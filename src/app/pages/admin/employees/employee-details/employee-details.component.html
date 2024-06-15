@@ -1,0 +1,259 @@
+
+
+<div
+  [attr.id]="'employee-details-' + employee.id_Empleado"
+  tabindex="-1"
+  class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+>
+  <div class="relative w-full max-w-4xl max-h-full">
+    <div class="relative bg-white rounded-lg  shadow dark:bg-gray-700">
+      <div
+        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+      >
+        <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+          Detalles del empleado
+        </h3>
+        <button
+          type="button"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          [attr.data-modal-hide]="'employee-details-' + employee.id_Empleado"
+        >
+          <svg
+            class="w-3 h-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+            />
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+
+      <div class="p-4 md:p-5 space-y-4">
+        <div class="flex flex-row justify-between items-center">
+          <div class="flex flex-row gap-2 items-center">
+            <img src="images/employee.jpg" class="w-28 rounded-full" alt="" />
+            <div>
+              <p class="text-xl font-semibold dark:text-blue-400">
+                {{ employee.nombre }} {{ employee.apellido }}
+              </p>
+              <p class="text-lg text-slate-400">Nombre del empleado</p>
+            </div>
+          </div>
+          @if(employee.estado){
+          <p
+            class="inline-block py-[1px] px-1 text-lg font-bold rounded-xl bg-green-300 text-green-500"
+          >
+            Activo
+          </p>
+          }@else {
+          <p
+            class="inline-block py-[1px] px-1 text-lg font-bold rounded-xl bg-red-300 text-red-500"
+          >
+            Inactivo
+          </p>
+          }
+        </div>
+
+        <p class="font-semibold text-lg text-slate-500">Contacto</p>
+
+        <div class="flex flex-wrap gap-2">
+          <div
+            class="flex flex-row gap-2 p-2 bg-blue-300 text-blue-600 items-center rounded-lg font-bold"
+          >
+            <img src="icons/ubication.png" class="w-8" alt="" />
+            <p>{{ employee.direccion }}</p>
+          </div>
+          <div
+            class="flex flex-row gap-2 p-2 bg-blue-300 text-blue-600 items-center rounded-lg font-bold"
+          >
+            <img src="icons/email.png" class="w-8" alt="" />
+            <p>{{ employee.email }}</p>
+          </div>
+          <div
+            class="flex flex-row gap-2 p-2 bg-blue-300 text-blue-600 items-center rounded-lg font-bold"
+          >
+            <img src="icons/phone.png" class="w-8" alt="" />
+            <p>{{ employee.telefono }}</p>
+          </div>
+        </div>
+
+        <p class="font-semibold text-lg text-slate-500">Informacion</p>
+
+        <div class="flex flex-wrap gap-2">
+          <div
+            class="flex flex-row gap-2 p-2 dark:text-blue-600 items-center rounded-lg font-bold"
+          >
+            <img
+              src="icons/calendar.png"
+              class="w-8 p-1 bg-blue-300 rounded-full"
+              alt=""
+            />
+            <div>
+              <p>{{ hoursWorked }} hrs</p>
+              <p class="text-slate-400 text-[10px]">Horas Trabajadas Semana</p>
+            </div>
+          </div>
+          <div
+            class="flex flex-row gap-2 p-2 dark:text-blue-600 items-center rounded-lg font-bold"
+          >
+            <img
+              src="icons/watch.png"
+              class="w-8 p-1 bg-blue-300 rounded-full"
+              alt=""
+            />
+            <div>
+              <p>{{ timeServide }} years</p>
+              <p class="text-slate-400 text-[10px]">Tiempo Servicio</p>
+            </div>
+          </div>
+          <div
+            class="flex flex-row gap-2 p-2 dark:text-blue-600 items-center rounded-lg font-bold"
+          >
+            <img
+              src="icons/test_performance.png"
+              class="w-8 p-1 bg-blue-300 rounded-full"
+              alt=""
+            />
+            <div>
+              <p>6.4</p>
+              <p class="text-slate-400 text-[10px]">Evaluacion de desempeño</p>
+            </div>
+          </div>
+          <div
+            class="flex flex-row gap-2 p-2 dark:text-blue-600 items-center rounded-lg font-bold"
+          >
+            <img
+              src="icons/briefcase.png"
+              class="w-8 p-1 bg-blue-300 rounded-full"
+              alt=""
+            />
+            <div>
+              <p>{{ departament }}</p>
+              <p class="text-slate-400 text-[10px]">Departament</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="font-semibold text-lg text-slate-500">Estado</p>
+
+        <div class="flex flex-wrap gap-2 items-center">
+          @if(employee.vacaciones){
+          <p
+            class="p-3 bg-green-400 text-green-600 rounded-xl font-semibold text-xl"
+          >
+            Vacaciones
+          </p>
+          }@else {
+          <p
+            class="p-3 bg-slate-400 text-slate-600 rounded-xl font-semibold text-xl"
+          >
+            Vacaciones
+          </p>
+          } @if(employee.licencia){
+          <p
+            class="p-3 bg-green-400 text-green-600 rounded-xl font-semibold text-xl"
+          >
+            Licencia
+          </p>
+          }@else {
+          <p
+            class="p-3 bg-slate-400 text-slate-600 rounded-xl font-semibold text-xl"
+          >
+            Licencia
+          </p>
+          }
+        </div>
+      </div>
+      <div>
+        <p class="p-4 font-semibold text-lg text-slate-500">Acciones</p>
+        <div
+          class="flex items-center jus  flex-wrap p-5 md:p-5 sm:justify-center rtl:space-x-reverse rounded-b"
+        >
+        
+        
+          <button 
+            [attr.data-modal-target]="'vacations-modal' + employee.id_Empleado"
+            [attr.data-modal-toggle]="'vacations-modal' + employee.id_Empleado"
+            type="button"
+            class="text-white gap-2 bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-beach"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M17.553 16.75a7.5 7.5 0 0 0 -10.606 0" />
+              <path
+                d="M18 3.804a6 6 0 0 0 -8.196 2.196l10.392 6a6 6 0 0 0 -2.196 -8.196z"
+              />
+              <path
+                d="M16.732 10c1.658 -2.87 2.225 -5.644 1.268 -6.196c-.957 -.552 -3.075 1.326 -4.732 4.196"
+              />
+              <path d="M15 9l-3 5.196" />
+              <path
+                d="M3 19.25a2.4 2.4 0 0 1 1 -.25a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 1 .25"
+              />
+            </svg>
+            <app-vacations-add [id_employee]="employee.id_Empleado ?? 0"  />
+            
+
+            Vacaciones
+          </button>
+          <button
+          [attr.data-modal-target]="'hours-modal' + employee.id_Empleado"
+            [attr.data-modal-toggle]="'hours-modal' + employee.id_Empleado"
+            type="button"
+            class="text-white gap-2 bg-[#1fd46b] hover:bg-[#1fd46b]/90 focus:ring-4 focus:outline-none focus:ring-[#1fd46b]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2"
+          >
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#ffffff"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-hourglass-high"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6.5 7h11" /><path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z" /><path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z" /></svg>
+            
+            <app-hours-add [id_employee]="employee.id_Empleado ?? 0"  />
+            Horas Trabajadas
+          </button>
+          <button
+            type="button"
+            class="text-white gap-2 bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2"
+          >
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#ffffff"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-license"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11" /><path d="M9 7l4 0" /><path d="M9 11l4 0" /></svg>
+            
+            Licencia
+          </button>
+          <button
+          type="button"
+          class="text-white gap-2 bg-[#1fd46b] hover:bg-[#1fd46b]/90 focus:ring-4 focus:outline-none focus:ring-[#1fd46b]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1fd46b]/55 me-2 mb-2"
+        >
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#ffffff"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-checkbox"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+          
+          Evaluacion
+        </button>
+
+       
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+
+
+
+

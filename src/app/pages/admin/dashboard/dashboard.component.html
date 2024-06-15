@@ -1,0 +1,56 @@
+<div class="flex flex-row flex-wrap gap-2 w-full  sm:ml-1">
+   <div class="my-2 p-5 rounded-lg shadow-lg shadow-blue-300 bg-white dark:bg-gray-800 transition-colors duration-300 flex-1 relative pb-16">
+      <h2 class="text-3xl font-semibold text-blue-600 dark:text-blue-300">Empleados</h2>
+
+      <div>
+         <p class="font-sans font-bold text-4xl mt-10 text-gray-800 dark:text-gray-200">{{countEmployees}}</p>
+         <p class="text-gray-500 dark:text-gray-400">Cantidad empleados</p>
+      </div>
+      
+      <button routerLink="/admin/employees" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 absolute bottom-3 right-3">
+         Ver Empleados
+      </button>
+   </div>
+
+   <div class="my-2 p-5 rounded-lg shadow-lg shadow-green-300 bg-white dark:bg-gray-800 transition-colors duration-300 flex-1 relative pb-16">
+      <h2 class="text-3xl font-semibold text-green-400 dark:text-green-300">Horas Trabajadas</h2>
+
+      <div>
+         <p class="font-sans font-bold text-4xl mt-10 text-gray-800 dark:text-gray-200">{{countHoursWorked}}</p>
+         <p class="text-gray-500 dark:text-gray-400">Total de Horas Trabajadas en la semana</p>
+      </div>
+      
+      <button type="button" class="text-white bg-green-400 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-400 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800 absolute bottom-3 right-3">
+         Ver Empleados
+      </button>
+   </div>
+
+   <div class="my-2 p-5 rounded-lg shadow-lg shadow-blue-300 bg-white dark:bg-gray-800 transition-colors duration-300 flex-1 relative pb-16">
+      <h2 class="text-3xl font-semibold text-blue-600 dark:text-blue-300">Vacaciones</h2>
+
+      <div>
+         <p class="font-sans font-bold text-4xl mt-10 text-gray-800 dark:text-gray-200">{{countEmployeesVacation}}</p>
+         <p class="text-gray-500 dark:text-gray-400">Total de empleados en vacaciones</p>
+      </div>
+      
+      <button routerLink="/admin/vacations" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 absolute bottom-3 right-3">
+         Ver Empleados
+      </button>
+   </div>
+</div>
+
+<div class="sm:my-2  sm:ml-1 bg-white sm:p-5 mb-5 dark:bg-slate-800 rounded-lg min-h-96 shadow-lg shadow-blue-300">
+   <h2 class=" p-5 text-3xl font-semibold text-blue-600 dark:text-blue-300">Empleados destacados</h2>
+
+   
+   <div class=" flex flex-wrap flex-row justify-evenly gap-2 sm:gap-6   flex-1 relative ">
+      @for (employee of employees; track employee.id_Empleado) {
+      <app-employee-card [employee]="employee"/>
+      }
+   </div>
+</div>
+
+
+
+
+
