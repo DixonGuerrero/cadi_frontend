@@ -146,32 +146,25 @@
         <p class="font-semibold text-lg text-slate-500">Estado</p>
 
         <div class="flex flex-wrap gap-2 items-center">
-          @if(employee.vacaciones){
-          <p
-            class="p-3 bg-green-400 text-green-600 rounded-xl font-semibold text-xl"
-          >
+          <!-- Vacaciones -->
+          <p class="p-3 rounded-xl font-semibold text-xl"
+            [ngClass]="{
+              'bg-green-400 text-green-600': employee.vacaciones,
+              'bg-slate-400 text-slate-600': !employee.vacaciones
+            }">
             Vacaciones
           </p>
-          }@else {
-          <p
-            class="p-3 bg-slate-400 text-slate-600 rounded-xl font-semibold text-xl"
-          >
-            Vacaciones
-          </p>
-          } @if(employee.licencia){
-          <p
-            class="p-3 bg-green-400 text-green-600 rounded-xl font-semibold text-xl"
-          >
+        
+          <!-- Licencia -->
+          <p class="p-3 rounded-xl font-semibold text-xl"
+            [ngClass]="{
+              'bg-green-400 text-green-600': employee.licencia,
+              'bg-slate-400 text-slate-600': !employee.licencia
+            }">
             Licencia
           </p>
-          }@else {
-          <p
-            class="p-3 bg-slate-400 text-slate-600 rounded-xl font-semibold text-xl"
-          >
-            Licencia
-          </p>
-          }
         </div>
+        
       </div>
       <div>
         <p class="p-4 font-semibold text-lg text-slate-500">Acciones</p>
@@ -228,12 +221,15 @@
             Horas Trabajadas
           </button>
           <button
+          [attr.data-modal-target]="'license-modal' + employee.id_Empleado"
+          [attr.data-modal-toggle]="'license-modal' + employee.id_Empleado"
             type="button"
             class="text-white gap-2 bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2"
           >
           <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#ffffff"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-license"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11" /><path d="M9 7l4 0" /><path d="M9 11l4 0" /></svg>
             
             Licencia
+            <app-license-add [id_employee]="employee.id_Empleado ?? 0"  />
           </button>
           <button
           type="button"
@@ -244,6 +240,18 @@
           Evaluacion
         </button>
 
+        <button
+          [attr.data-modal-target]="'modal-edit-employee' + employee.id_Empleado"
+          [attr.data-modal-toggle]="'modal-edit-employee' + employee.id_Empleado"
+            type="button"
+            class="text-white gap-2 bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2"
+          >
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
+            
+          <app-employee-edit [employee]="employee" (employeeEdited)="handleUpdateEmployee($event)" />
+            Editar
+            
+          </button>
        
         </div>
       </div>

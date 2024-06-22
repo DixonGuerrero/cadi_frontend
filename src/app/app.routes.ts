@@ -1,13 +1,17 @@
 import { Routes } from '@angular/router';
+import { RoutesAuth } from './pages/auth/auth.routes';
+import { RoutesAdmin } from './pages/admin/admin.routes';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { loginGuard } from './core/guards/sesion.guard';
 
 export const routes: Routes = [
    {
-      path: '', loadComponent: () => import('./pages/landing-page/landing-page.component').then(m => m.LandingPageComponent)
+      path: '', component: LandingPageComponent
    },
    {
-      path: 'auth', loadChildren: () => import('./pages/auth/auth.routes').then(m => m.RoutesAuth)
+      path: 'auth', children:  RoutesAuth
    },
    {
-      path: 'admin', loadChildren: () => import('./pages/admin/admin.routes').then(m => m.RoutesAdmin)
+      path: 'admin', children: RoutesAdmin, canActivate: [loginGuard]
    }
 ];

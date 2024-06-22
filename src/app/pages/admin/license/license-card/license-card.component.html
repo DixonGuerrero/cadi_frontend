@@ -1,0 +1,81 @@
+<app-license-edit [licenseEdit]="license" (licenseEdited)="handleLicenseEdited($event)" />
+
+<div
+
+class="rounded-lg border shadow-sm w-full bg-green-200 sm:min-w-96 ">
+  <div class=" gap-2 p-6">
+    <div class="flex items-center justify-between">
+      <div class="text-2xl text-slate-600 font-semibold">
+        {{ license.tipo ?? "Luto" }}
+      </div>
+
+      <div class="flex gap-2 items-center justify-center">
+        @if(stateLicense()){
+        <div
+          class="rounded-full bg-green-300 px-3 py-1 text-sm font-medium text-green-800"
+        >
+          Activa
+        </div>
+        }@else {
+        <div
+          class="rounded-full bg-red-200 px-3 py-1 text-sm font-medium text-red-800"
+        >
+          Inactiva
+        </div>
+        }
+
+        <button
+        
+        [attr.data-modal-target]="'license-modal-edit'+license.id_Licencia "
+        [attr.data-modal-toggle]="'license-modal-edit'+license.id_Licencia"
+          type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-edit"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+            />
+            <path
+              d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+            />
+            <path d="M16 5l3 3" />
+          </svg>
+          <span class="sr-only">Icon description</span>
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <div class="font-medium text-xl flex justify-between">
+        <span class="text-slate-500">Fecha Inicio: </span>
+        <span class="font-semibold text-slate-700">
+          {{ license.fecha_Inicio }}
+        </span>
+      </div>
+      <div class="text-xl font-medium flex justify-between">
+        <span class="text-slate-500">Fecha Fin: </span>
+        <span class="font-semibold text-slate-700">
+          {{ license.fecha_Fin }}
+        </span>
+      </div>
+
+      <div class="text-xl font-medium flex justify-between">
+        <span class="text-slate-500">Empleado: </span>
+        <span class="text-xl font-semibold text-slate-700">
+          {{ employeLicense?.nombre }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

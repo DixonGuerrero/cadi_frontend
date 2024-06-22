@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, inject } from '@angular/core';
 import { ModalService } from '../../../../core/services/modal.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { IHours } from '../../../../core/models/types';
+import { ToastrService } from 'ngx-toastr';
+import { HoursWorkedService } from '../../../../core/services/hours-worked.service';
 
 @Component({
   selector: 'app-hours-add',
@@ -9,15 +12,16 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './hours-add.component.html',
   styleUrl: './hours-add.component.css',
 })
-export class HoursAddComponent {
+export class HoursAddComponent implements AfterViewInit {
   @Input() id_employee: number = 0;
+  toastrSvc = inject(ToastrService);
+  hoursWorkedSvc = inject(HoursWorkedService);
 
   constructor(public modalService: ModalService) {}
 
-  ngOnInit() {}
 
   ngAfterViewInit() {
-    console.log('vacations-add' + this.id_employee);
+
     this.modalService.initModal('vacations-modal' + this.id_employee);
   }
 
@@ -37,20 +41,24 @@ export class HoursAddComponent {
 
     if(this.formHoursWorked.value.hoursWorked < 0) return console.log('Invalid hoursWorked', this.formHoursWorked.value.hoursWorked)
 
-    const hoursWorked = {
-      id_employee: this.id_employee,
-      day: this.formHoursWorked.value.day,
-      hoursWorked: this.formHoursWorked.value.hoursWorked,
+    const hoursWorked:IHours = {
+      empleado_Id: this.id_employee,
+      fecha: this.formHoursWorked.value.day,
+      horas_trabajadas: this.formHoursWorked.value.hoursWorked,
     };
 
-
-
-    //TODO: Implementar la lógica para guardar las horas trabajadas
-
-    console.log('onVacationAdd', this.modalService);
+    this.hoursWorkedSvc.createHourWorked(hoursWorked).subscribe(
+      (response) => {
+        this.toastrSvc.success('Horas trabajadas creadas');
+        console.log('HoursWorked created:', response);
+      },
+      (error) => {
+        this.toastrSvc.error('Error al crear horas trabajadas');
+        console.error('Error creating HoursWorked:', error);
+      }
+    );
 
     this.modalService.hideModal();
-    console.log('Submitting hoursWorked:', hoursWorked);
   }
 
   onDateClick(event: MouseEvent) {

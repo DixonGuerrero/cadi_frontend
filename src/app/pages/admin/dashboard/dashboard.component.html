@@ -3,7 +3,7 @@
       <h2 class="text-3xl font-semibold text-blue-600 dark:text-blue-300">Empleados</h2>
 
       <div>
-         <p class="font-sans font-bold text-4xl mt-10 text-gray-800 dark:text-gray-200">{{countEmployees}}</p>
+         <p class="font-sans font-bold text-4xl mt-10 text-gray-800 dark:text-gray-200">{{quantityEmployees}}</p>
          <p class="text-gray-500 dark:text-gray-400">Cantidad empleados</p>
       </div>
       
@@ -29,7 +29,7 @@
       <h2 class="text-3xl font-semibold text-blue-600 dark:text-blue-300">Vacaciones</h2>
 
       <div>
-         <p class="font-sans font-bold text-4xl mt-10 text-gray-800 dark:text-gray-200">{{countEmployeesVacation}}</p>
+         <p class="font-sans font-bold text-4xl mt-10 text-gray-800 dark:text-gray-200">{{quantifyEmployeesVacation}}</p>
          <p class="text-gray-500 dark:text-gray-400">Total de empleados en vacaciones</p>
       </div>
       
@@ -44,9 +44,18 @@
 
    
    <div class=" flex flex-wrap flex-row justify-evenly gap-2 sm:gap-6   flex-1 relative ">
-      @for (employee of employees; track employee.id_Empleado) {
-      <app-employee-card [employee]="employee"/>
+
+      @if(employees){
+         @for (employee of employees; track employee.id_Empleado) {
+            <app-employee-card [employee]="employee"></app-employee-card>
+         }
+      }@else{
+            
+
+            <p class="text-gray-500 dark:text-gray-400">No hay empleados destacados</p>
       }
+     
+     
    </div>
 </div>
 

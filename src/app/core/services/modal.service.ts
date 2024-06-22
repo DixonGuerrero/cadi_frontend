@@ -20,24 +20,20 @@ export class ModalService {
             'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
         closable: true,
         onHide: () => {
-            console.log('modal is hidden');
+          
         },
         onShow: () => {
-            console.log('modal is shown');
+           
         },
         onToggle: () => {
-            console.log('modal has been toggled');
+            
         },
         ...options,
     };
 
-      // instance options object
-      const instanceOptions: InstanceOptions = {
-        id: modalId,
-        override: false,
-      };
 
-      this.modal = new Modal(modalElement, modalOptions, instanceOptions);
+
+      this.modal = new Modal(modalElement, modalOptions);
     }
   }
 

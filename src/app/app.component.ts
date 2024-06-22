@@ -1,5 +1,5 @@
 // src/app/app.component.ts
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 
@@ -13,8 +13,8 @@ import { initFlowbite } from 'flowbite';
 export class AppComponent implements OnInit {
   title = 'Cadi';
 
-
   ngOnInit(): void {
-   initFlowbite();
+    initFlowbite();
+   
   }
 }

@@ -1,8 +1,10 @@
-import { Component} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { EmployeeCardComponent } from '../../../shared/components/employee-card/employee-card.component';
-import { IEmployee } from '../../../core/models/types';
+import { IDepartment, IEmployee } from '../../../core/models/types';
 import { RouterLink } from '@angular/router';
-import { ModalService } from '../../../core/services/modal.service';
+import { EmployeeService } from '../../../core/services/employee.service';
+import { TokenService } from '../../../core/services/token.service';
+import { DepartamentService } from '../../../core/services/departament.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,116 +13,38 @@ import { ModalService } from '../../../core/services/modal.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent  {
-  countEmployees = '35.000';
-  countHoursWorked = '1.000.000';
-  countEmployeesVacation = '5.000';
-  
+export class DashboardComponent implements OnInit {
+  // Services
+  private employeeS = inject(EmployeeService);
 
-  constructor() {
-   
+  // Variables
+  public employees: IEmployee[] = [];
+
+  constructor() {}
+
+  quantityEmployees = '0';
+  countHoursWorked = '1.000.000';
+  quantifyEmployeesVacation = '5.000';
+
+  ngOnInit(): void {
+    this.initData();
   }
 
-  employees: IEmployee[] = [
-    {
-      id_Empleado: 0,
-      nombre: 'Carlos',
-      apellido: 'Gómez',
-      fecha_Nacimiento: '1980-03-15',
-      direccion: 'Calle Principal 123',
-      telefono: '555-1234',
-      email: 'carlos.gomez@example.com',
-      fecha_Contratacion: '2020-01-10',
-      puesto: 'Gerente de Ventas',
-      vacaciones: true,
-      licencia: false,
-      salario: 70000,
-      estado: true,
-      departamento_Id: 1,
-    },
-    {
-      id_Empleado: 1,
-      nombre: 'Carlos',
-      apellido: 'Gómez',
-      fecha_Nacimiento: '1980-03-15',
-      direccion: 'Calle Principal 123',
-      telefono: '555-1234',
-      email: 'carlos.gomez@example.com',
-      fecha_Contratacion: '2020-01-10',
-      puesto: 'Gerente de Ventas',
-      vacaciones: true,
-      licencia: false,
-      salario: 70000,
-      estado: true,
-      departamento_Id: 1,
-    },
-    {
-      id_Empleado: 2,
-      nombre: 'Carlos',
-      apellido: 'Gómez',
-      fecha_Nacimiento: '1980-03-15',
-      direccion: 'Calle Principal 123',
-      telefono: '555-1234',
-      email: 'carlos.gomez@example.com',
-      fecha_Contratacion: '2020-01-10',
-      puesto: 'Gerente de Ventas',
-      vacaciones: true,
-      licencia: false,
-      salario: 70000,
-      estado: true,
-      departamento_Id: 1,
-    },
-    {
-      id_Empleado: 3,
-      nombre: 'Carlos',
-      apellido: 'Gómez',
-      fecha_Nacimiento: '1980-03-15',
-      direccion: 'Calle Principal 123',
-      telefono: '555-1234',
-      email: 'carlos.gomez@example.com',
-      fecha_Contratacion: '2020-01-10',
-      puesto: 'Gerente de Ventas',
-      vacaciones: true,
-      licencia: false,
-      salario: 70000,
-      estado: true,
-      departamento_Id: 1,
-    },
-    {
-      id_Empleado: 4,
-      nombre: 'Carlos',
-      apellido: 'Gómez',
-      fecha_Nacimiento: '1980-03-15',
-      direccion: 'Calle Principal 123',
-      telefono: '555-1234',
-      email: 'carlos.gomez@example.com',
-      fecha_Contratacion: '2020-01-10',
-      puesto: 'Gerente de Ventas',
-      vacaciones: true,
-      licencia: false,
-      salario: 70000,
-      estado: true,
-      departamento_Id: 1,
-    },
-    {
-      id_Empleado: 5,
-      nombre: 'Carlos',
-      apellido: 'Gómez',
-      fecha_Nacimiento: '1980-03-15',
-      direccion: 'Calle Principal 123',
-      telefono: '555-1234',
-      email: 'carlos.gomez@example.com',
-      fecha_Contratacion: '2020-01-10',
-      puesto: 'Gerente de Ventas',
-      vacaciones: true,
-      licencia: false,
-      salario: 70000,
-      estado: true,
-      departamento_Id: 1,
-    },
-  ];
+  initData() {
+    this.employeeS.getEmployeesByCompany().subscribe((employees) => {
+      this.employees = employees;
+     
 
+      this.quantityEmployees = this.countEmployees();
+      this.quantifyEmployeesVacation = this.countEmployeesInVacation();
+  })
+  }
 
-  
+  countEmployees(){
+    return this.employees.length.toString();
+  }
 
+  countEmployeesInVacation(){
+    return this.employees.filter((employee) => employee.vacaciones).length.toString();
+  }
 }

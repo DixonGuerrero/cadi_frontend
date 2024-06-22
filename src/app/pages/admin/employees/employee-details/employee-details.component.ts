@@ -1,21 +1,22 @@
-import { Component, Input, signal } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, signal } from '@angular/core';
 import { IEmployee } from '../../../../core/models/types';
 import { initFlowbite } from 'flowbite';
 import { EmployeeCardComponent } from '../../../../shared/components/employee-card/employee-card.component';
 import { VacationsAddComponent } from '../../vacations/vacations-add/vacations-add.component';
-import { ModalService } from '../../../../core/services/modal.service';
 import { HoursAddComponent } from '../../hours-worked/hours-add/hours-add.component';
+import { LicenseAddComponent } from '../../license/license-add/license-add.component';
+import { CommonModule } from '@angular/common';
+import { EmployeeEditComponent } from '../employee-edit/employee-edit.component';
 
 @Component({
   selector: 'app-employee-details',
   standalone: true,
-  imports: [EmployeeCardComponent,VacationsAddComponent,HoursAddComponent],
+  imports: [EmployeeCardComponent,VacationsAddComponent,HoursAddComponent, LicenseAddComponent, CommonModule,EmployeeEditComponent],
   templateUrl: './employee-details.component.html',
   styleUrl: './employee-details.component.css'
 })
-export class EmployeeDetailsComponent {
+export class EmployeeDetailsComponent implements OnInit{
   hoursWorked = 12;
-  nameEmployee = 'Juan Perez';
   departament = 'Software Development';
   timeServide = 0;
   photo = 'images/employee.jpg';
@@ -29,6 +30,8 @@ export class EmployeeDetailsComponent {
     this.formatFecha();
     
   }
+
+  
 
   @Input() employee: IEmployee = {
     id_Empleado: 0,
@@ -59,6 +62,9 @@ export class EmployeeDetailsComponent {
     this.employee.fecha_Nacimiento = date.toLocaleDateString();
   }
 
+  handleUpdateEmployee(employee: IEmployee) {
+    this.employee = employee;
+  }
 
   
  

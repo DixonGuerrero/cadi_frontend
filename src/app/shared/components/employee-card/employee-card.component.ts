@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, signal } from '@angular/core';
 import { IEmployee } from '../../../core/models/types';
 import { initFlowbite } from 'flowbite';
 import { EmployeeDetailsComponent } from '../../../pages/admin/employees/employee-details/employee-details.component';
@@ -19,7 +19,7 @@ export class EmployeeCardComponent implements OnInit{
   details = signal<Boolean>(false)
 
   ngOnInit(): void {
-    initFlowbite();
+
     this.calculateTimeService();
     this.formatFecha();
     
@@ -46,14 +46,18 @@ export class EmployeeCardComponent implements OnInit{
 
   calculateTimeService() {
     const currentDate = new Date();
+    console.log('fecha de contratacion', this.employee.fecha_Contratacion)
+
     const hireDate = new Date(this.employee.fecha_Contratacion);
     const timeService = currentDate.getFullYear() - hireDate.getFullYear();
-    this.timeServide = timeService;
+    this.timeServide = timeService ?? 0;
   }
 
   formatFecha() {
     const date = new Date(this.employee.fecha_Nacimiento);
-    this.employee.fecha_Nacimiento = date.toLocaleDateString();
+    console.log('fecha de nacimiento', this.employee.fecha_Nacimiento)
+    const formattedDate = date.toLocaleDateString();
+    console.log('fecha formateada', formattedDate)
   }
   
 
