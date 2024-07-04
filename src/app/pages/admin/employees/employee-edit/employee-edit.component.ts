@@ -48,7 +48,6 @@ export class EmployeeEditComponent {
 
   initData() {
 
-    console.log('fechafdd', this.employee?.fecha_Nacimiento.toString());
 
     this.departamentService
       .getDepartmentsByCompany()

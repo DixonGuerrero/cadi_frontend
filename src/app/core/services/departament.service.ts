@@ -63,7 +63,7 @@ export class DepartamentService {
   }
 
   updateDepartament(departament: IDepartment) {
-    return this.http.put(this.baseUrl + departament.id_departamento, departament);
+    return this.http.put(this.baseUrl +"?Id="+ departament.id_departamento, departament);
   }
 
   setDepartamentCreated(departament: IDepartment): void {
@@ -73,4 +73,9 @@ export class DepartamentService {
   getDepartamentCreated(): IDepartment | null {
     return this.departamentCreated.value;
   }
+
+  deleteDepartament(id: number):Observable<any> {
+    return this.http.delete<any>(this.baseUrl + id);
+  }
+
 }

@@ -25,8 +25,6 @@ export class EmployeeCardComponent implements OnInit{
     
   }
 
-
-
   @Input() employee: IEmployee = {
     id_Empleado: 0,
     nombre: '',
@@ -46,7 +44,6 @@ export class EmployeeCardComponent implements OnInit{
 
   calculateTimeService() {
     const currentDate = new Date();
-    console.log('fecha de contratacion', this.employee.fecha_Contratacion)
 
     const hireDate = new Date(this.employee.fecha_Contratacion);
     const timeService = currentDate.getFullYear() - hireDate.getFullYear();
@@ -55,9 +52,7 @@ export class EmployeeCardComponent implements OnInit{
 
   formatFecha() {
     const date = new Date(this.employee.fecha_Nacimiento);
-    console.log('fecha de nacimiento', this.employee.fecha_Nacimiento)
     const formattedDate = date.toLocaleDateString();
-    console.log('fecha formateada', formattedDate)
   }
   
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as jwt from 'jwt-decode';  
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,19 +28,24 @@ export class TokenService {
     return parseInt(empresaIdString, 10);
   }
 
-  storeTokenInCookies(token: string, empresaId: number): void {
-    // Guarda el token y el ID de la empresa en las cookies
-    this.cookieService.set('token', token, {
-      expires: this.getTokenExpiration(token),
-      sameSite: 'Strict',
-      secure: true // Asegúrate de que esto sea true si estás usando HTTPS
-    });
+  storeTokenInCookies(token: string, empresaId: number): Observable<void> {
+    return new Observable<void>((observer) => {
+      // Guarda el token y el ID de la empresa en las cookies
+      this.cookieService.set('token', token, {
+        expires: this.getTokenExpiration(token),
+        sameSite: 'Strict',
+        secure: true // Asegúrate de que esto sea true si estás usando HTTPS
+      });
   
-    // Almacena el ID de la empresa en las cookies
-    this.cookieService.set('empresaId', empresaId.toString(), {
-      expires: this.getTokenExpiration(token),
-      sameSite: 'Strict',
-      secure: true // Asegúrate de que esto sea true si estás usando HTTPS
+      // Almacena el ID de la empresa en las cookies
+      this.cookieService.set('empresaId', empresaId.toString(), {
+        expires: this.getTokenExpiration(token),
+        sameSite: 'Strict',
+        secure: true // Asegúrate de que esto sea true si estás usando HTTPS
+      });
+  
+      observer.next();
+      observer.complete();
     });
   }
   

@@ -6,6 +6,7 @@ import { VacationsComponent } from './vacations/vacations-page/vacations.compone
 import { SearchComponent } from './search/search.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LicensePageComponent } from './license/license-page/license-page.component';
+import { DepartamentPageComponent } from './departament/departament-page/departament-page.component';
 
 
 export const RoutesAdmin: Routes = [
@@ -31,6 +32,9 @@ export const RoutesAdmin: Routes = [
          },
          {
             path: 'licenses' , component: LicensePageComponent
+         },
+         {
+            path: 'departament-page' , component:DepartamentPageComponent
          },
          {
             path: '**', redirectTo: 'dashboard'

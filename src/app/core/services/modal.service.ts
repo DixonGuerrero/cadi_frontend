@@ -1,6 +1,6 @@
 // src/app/core/services/modal.service.ts
 import { Injectable } from '@angular/core';
-import { Modal, ModalOptions, ModalInterface, InstanceOptions } from 'flowbite';
+import { Modal, ModalOptions, ModalInterface } from 'flowbite';
 
 @Injectable({
   providedIn: 'root',
