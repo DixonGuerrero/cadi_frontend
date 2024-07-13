@@ -1,0 +1,191 @@
+<<<<<<< HEAD
+<main class="w-full h-screen">
+  <section class="mx-auto md:w-[1000px]">
+    <nav class="bg-transparent fixed w-full  top-0 start-0">
+      <div
+        class="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto p-4"
+      >
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="images/logo.png" class="h-20" alt="RIDI Logo" />
+        </a> 
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+         
+          <div class="hidden sm:flex">
+            <p-button routerLink="/auth/login">
+              <span class="font-semibold">Ingresar</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 12l14 0" />
+                <path d="M15 16l4 -4" />
+                <path d="M15 8l4 4" />
+              </svg>
+            </p-button>
+
+            
+          </div>
+          <div class="flex justify-center sm:hidden ">
+            <p-toast />
+            <p-menu #menu [model]="items" [popup]="true" />
+            <p-button (click)="menu.toggle($event)" icon="pi pi-bars"/>
+             </div>
+        </div>
+        <div
+          class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+          id="navbar-sticky"
+        >
+          <ul class="flex gap-5 font-bold text-slate-500">
+            <li class="list-none cursor-pointer">Inicio</li>
+            <li class="list-none cursor-pointer">Beneficios</li>
+            <li class="list-none cursor-pointer">Contacto</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="">
+      <div
+        class="flex flex-col-reverse items-center justify-between w-full h-screen lg:flex-row md:flex-row-reverse mt-5 lg:mt-0 sm: p-4"
+      >
+        <div class="text-start flex flex-col justify-center flex-1">
+          <h1 class="text-green-400 text-4xl md:text-6xl font-bold mb-0">
+            <span class="text-blue-600">Cadi</span>
+            <br />
+            Conectando talendo con eficiencia
+          </h1>
+          <p class="text-lg md:text-xl font-semibold text-gray-600 mt-0 mb-0">
+            Descubre el poder de la gestion de recursos humanos
+          </p>
+          <p-button routerLink="/auth/login" label="¡Empezar Ahora!" [raised]="true" />
+        </div>
+        <div class="flex-1 flex justify-start">
+          <img
+            src="images/landing_page.gif"
+            alt="Imagen Principal"
+            class="w-full max-w-6xl md:max-w-none md:w-full lg:ml-11"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+=======
+
+<main class="bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-blue-700 via-blue-800 to-gray-900 w-full h-screen">
+   <section class="mx-auto md:w-[1000px] ">
+     <nav class="bg-transparent  fixed w-full z-20 top-0 start-0">
+       <div
+         class="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto p-4"
+       >
+         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+           <img src="images/logo.png" class="h-20 " alt="RIDI Logo" />
+         </a>
+         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+           <a
+             routerLink="/auth/login"
+             type="button"
+             class="text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+             >Login</a
+           >
+           <button
+             data-collapse-toggle="navbar-sticky"
+             type="button"
+             class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+             aria-controls="navbar-sticky"
+             aria-expanded="false"
+           >
+             <span class="sr-only">Menu</span>
+             <svg
+               class="w-5 h-5"
+               aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg"
+               fill="none"
+               viewBox="0 0 17 14"
+             >
+               <path
+                 stroke="currentColor"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 stroke-width="2"
+                 d="M1 1h15M1 7h15M1 13h15"
+               />
+             </svg>
+           </button>
+         </div>
+         <div
+           class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+           id="navbar-sticky"
+         >
+           <ul
+             class="flex flex-col bg-blue-500 md:bg-transparent p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 "
+           >
+             <li>
+               <a
+                 href="#"
+                 class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:hover:text-blue-700  md:p-0 md:dark:text-blue-500"
+                 aria-current="page"
+                 >Inicio</a
+               >
+             </li>
+             <li>
+               <a
+                 href="#"
+                 class="block py-2 px-3 text-white rounded hover:bg-blue-400 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                 >Beneficio</a
+               >
+             </li>
+             <li>
+               <a
+                 href="#"
+                 class="block py-2 px-3 text-white rounded hover:bg-blue-400 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                 >Contacto</a
+               >
+             </li>
+           </ul>
+         </div>
+       </div>
+     </nav>
+ 
+     <div class="">
+       <div
+         class="flex flex-col-reverse items-center justify-between w-full h-screen lg:flex-row md:flex-row-reverse mt-20 lg:mt-0"
+       >
+         <div class="text-start flex flex-col justify-center flex-1">
+           <h1 class="text-green-400 text-2xl md:text-6xl font-bold">
+              <span class="text-blue-600">Cadi</span>
+              <br>
+              Conectando talendo con eficiencia
+            
+           </h1>
+           <p class="text-sm md:text-xl font-semibold text-gray-300">
+             Descubre el poder de la gestion de recursos humanos
+           </p>
+           <a
+             routerLink="/auth/login"
+             class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 w-2/3 mt-10"
+             >¡Empezar Ahora!</a
+           >
+         </div>
+         <div class="flex-1 flex justify-start">
+           <img
+             src="images/landing_page.gif"
+             alt="Imagen Principal"
+             class="w-full max-w-6xl md:max-w-none md:w-full lg:ml-11"
+           />
+         </div>
+       </div>
+     </div>
+   </section>
+ </main>
+ 
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b

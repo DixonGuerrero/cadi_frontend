@@ -1,0 +1,40 @@
+<!-- Main modal -->
+
+<div class="container">
+  <div class="header">
+    <h2 class="title">Empleados</h2>
+
+    <p-button
+      label="Agregar Empleado"
+      icon="pi pi-plus-circle"
+      iconPos="right"
+    />
+  </div>
+
+  <div>
+    @for(departament of departamentsWithEmployees; track
+    departament.id_departamento) {
+
+    <h2 class="title_departament">
+      Departamento de
+      <span>{{ departament.nombreDepartamento }}</span>
+    </h2>
+
+    <div class="content">
+      <p-carousel
+        [value]="departament.empleados"
+        [numVisible]="3"
+        [numScroll]="1"
+        [responsiveOptions]="responsiveOptions"
+        [circular]="true"
+      >
+        <ng-template let-employee pTemplate="item">
+         
+          <app-employee-card [employee]="employee" />
+          
+        </ng-template>
+      </p-carousel>
+    </div>
+    }
+  </div>
+</div>

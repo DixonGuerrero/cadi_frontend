@@ -1,0 +1,14 @@
+<<<<<<< HEAD
+/*Configuration Prime NG and Tailwind CSS*/
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+=======
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b

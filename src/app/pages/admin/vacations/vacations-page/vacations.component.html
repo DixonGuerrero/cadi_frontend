@@ -1,0 +1,22 @@
+<div class="sm:my-2 sm:ml-1 sm:p-5 mb-5 bg-white dark:bg-slate-800 rounded-lg min-h-96 shadow-lg shadow-blue-300">
+   <div class=" flex flex-row py-5 justify-between items-center">
+      <h2 class=" p-2 text-xl   sm:text-3xl font-semibold text-blue-600 dark:text-blue-300">Vacaciones</h2>
+     
+   </div>
+
+   <h2 class="text-slate-400 p-3 text-lg sm:text-2xl font-semibold py-5 ">Empleados en <span class="text-green-300">Vacaciones</span></h2>
+
+    <div
+      class="flex flex-wrap flex-row  gap-2 sm:gap-6 flex-1 relative sm:min-h-80"
+    >
+      @for (employee of employees; track employee.id_Empleado) {
+      <app-employee-card [employee]="employee"  />
+      }
+    </div>
+
+    
+
+
+ 
+
+</div>

@@ -1,0 +1,268 @@
+<div
+<<<<<<< HEAD
+  class="menu"
+=======
+  class="menu fixed w-10 h-10 text-3xl flex justify-center items-center rounded-full bg-slate-600 dark:bg-slate-700 right-4 top-4 sm:hidden z-10"
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+  (click)="sizeSidebar()"
+>
+@if(!bigMenu()){
+  <img src="icons/menu.png" class="w-5" alt="">
+}@else {
+  <img src="icons/close_menu.png" class="w-5" alt="">
+}
+</div>
+
+<div
+<<<<<<< HEAD
+  class="barra-lateral"
+>
+  <div >
+    <div class="nombre-pagina" >
+      <img class="logo_user" src="images/admin.jpg" alt="" (click)="toggleLogo()">
+      <span>Holiss</span>
+      
+  </div>
+ 
+  </div>
+
+  <div class="linea"></div>
+
+  <nav class="navegacion ">
+    <p class="">Páginas</p>
+    <ul>
+      <li class="">
+        <a
+          routerLink="/admin/dashboard"
+          routerLinkActive="active"
+          class="option"
+        >
+          <img src="icons/home.png" class="icon_option" />
+          <span class="pl-2">Principal</span>
+        </a>
+      </li>
+      <li class="">
+        <a
+          routerLink="/admin/employees"
+          routerLinkActive="active"
+          class="option"
+        >
+          <img src="icons/employees.png" class="icon_option" />
+          <span class="pl-2">Libros</span>
+        </a>
+      </li>
+      <li class="">
+        <a
+          routerLink="/admin/loans"
+          routerLinkActive="active"
+          class="option"
+        >
+          <img src="icons/devolved.png" class="icon_option" />
+          <span class="pl-2">Prestamos</span>
+        </a>
+      </li>
+     
+      
+=======
+  class="barra-lateral shadow-lg rounded-lg flex flex-col  justify-between w-60 -ml-1 overflow-hidden px-[15px] py-5  bg-white dark:bg-gray-800 z-10 sm:left-3 fixed left-[-250px]"
+>
+  <div>
+    <div
+      class="nombre-pagina w-full h-11 text-black dark:text-white flex items-center"
+    >
+      <div class="flex items-center gap-2">
+        <img
+          id="logo"
+          src="images/logo.png"
+          class="rounded-full w-12 h-12"
+          alt=""
+          (click)="toggleLogo()"
+        />
+        <div class="">
+          <div class="flex flex-col">
+            <span class="font-bold">Cadi RR.HH</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navegacion overflow-y-auto overflow-x-hidden min-h-60">
+    <p class="text-sm text-gray-400 dark:text-gray-300 my-4">Páginas</p>
+    <ul>
+      <li class="flex mb-1">
+        <a
+          routerLink="/admin/dashboard"
+          routerLinkActive="shadow-lg bg-blue-200 text-slate-500 dark:bg-white dark:text-blue-800"
+          class="text-gray-500 dark:text-blue-300 rounded-lg w-full h-11 flex items-center hover:bg-blue-300 p-2 dark:hover:bg-blue-500 hover:text-white"
+        >
+          <img src="icons/home.png" class="w-10" />
+          <span class="pl-2">Dashboard</span>
+        </a>
+      </li>
+      <li class="flex mb-1">
+        <a
+          routerLink="/admin/employees"
+          routerLinkActive="shadow-lg bg-blue-200 text-slate-500 dark:bg-white dark:text-blue-800"
+          class="text-gray-500 dark:text-blue-300 rounded-lg w-full h-11 flex items-center hover:bg-blue-300 p-2 dark:hover:bg-blue-500 hover:text-white"
+        >
+          <img src="icons/employees.png" class="w-10" />
+          <span class="pl-2">Empleados</span>
+        </a>
+      </li>
+      <li class="flex mb-1">
+        <a
+          routerLink="/admin/vacations"
+          routerLinkActive="shadow-lg bg-blue-200 text-slate-500 dark:bg-white dark:text-blue-800"
+          class="text-gray-500 dark:text-blue-300 rounded-lg w-full h-11 flex items-center hover:bg-blue-300 p-2 dark:hover:bg-blue-500 hover:text-white"
+        >
+          <img src="icons/vacations.png" class="w-10" />
+          <span class="pl-2">Vacaciones</span>
+        </a>
+      </li>
+      <li class="flex mb-1">
+        <a
+        routerLinkActive="shadow-lg bg-blue-200 text-slate-500 dark:bg-white dark:text-blue-800"
+          class="text-gray-500 dark:text-blue-300 rounded-lg w-full h-11 flex items-center hover:bg-blue-300 p-2 dark:hover:bg-blue-500 hover:text-white"
+        >
+          <img src="icons/work_hours.png" class="w-10" name="reader" />
+          <span class="pl-2">Horas de Trabajo</span>
+        </a>
+      </li>
+      <li class="flex mb-1">
+        <a
+        routerLink="/admin/licenses"
+        routerLinkActive="shadow-lg bg-blue-200 text-slate-500 dark:bg-white dark:text-blue-800"
+          class="text-gray-500 dark:text-blue-300 rounded-lg w-full h-11 flex items-center hover:bg-blue-300 p-2 dark:hover:bg-blue-500 hover:text-white"
+        >
+          <img src="icons/license.png" class="w-10" name="reader" />
+          <span class="pl-2">Licencias</span>
+        </a>
+      </li>
+      <li class="flex mb-1">
+        <a
+        routerLinkActive="shadow-lg bg-blue-200 text-slate-500 dark:bg-white dark:text-blue-800"
+          class="text-gray-500 dark:text-blue-300 rounded-lg w-full h-11 flex items-center hover:bg-blue-300 p-2 dark:hover:bg-blue-500 hover:text-white"
+        >
+          <img src="icons/test_performance.png" class="w-10" name="reader" />
+          <span class="pl-2">Evalucion</span>
+        </a>
+      </li>
+    </ul>
+    <p class="text-sm text-gray-400 dark:text-gray-300 my-4">Ajustes</p>
+    <ul>
+      <li class="flex mb-1">
+        <a
+        routerLink="/admin/settings"
+        routerLinkActive="shadow-lg bg-blue-200 text-slate-500 dark:bg-white dark:text-blue-800"
+
+          class="text-gray-500 dark:text-blue-300 rounded-lg w-full h-11 flex items-center hover:bg-blue-300 p-2 dark:hover:bg-blue-500 hover:text-white"
+        >
+          <img src="icons/settings.png" class="w-10" name="reader" />
+          <span class="pl-2">Ajustes</span>
+        </a>
+      </li>
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+    </ul>
+  </nav>
+
+  <div>
+<<<<<<< HEAD
+    <div class="linea"></div>
+
+    <div
+      class="modo-oscuro"
+    >
+      @if(!darkMode()){
+      <div
+        class="info "
+      >
+        <img
+          src="icons/dark_mode.png"
+          class="icon"
+=======
+    <div class="w-full h-[1px] mt-4 bg-blue-500 dark:bg-purple-500"></div>
+
+    <div
+      class="modo-oscuro w-full rounded-lg flex justify-between items-center"
+    >
+      @if(!darkMode()){
+      <div
+        class="info w-40 h-11 overflow-hidden flex items-center text-gray-500 dark:text-gray-300 gap-2"
+      >
+        <img
+          src="icons/dark_mode.png"
+          class="w-[30px] mx-3 text-[20px]"
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+          alt=""
+        />
+        <span id="texto-Tema">Modo oscuro</span>
+      </div>
+      }@else {
+      <div
+<<<<<<< HEAD
+        class="info "
+      >
+        <img src="icons/sun.png" class="icon" alt="" />
+=======
+        class="info w-40 h-11 overflow-hidden flex items-center text-gray-500 dark:text-gray-300 gap-2"
+      >
+        <img src="icons/sun.png" class="w-[30px] mx-3 text-[20px]" alt="" />
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+        <span id="texto-Tema">Modo claro</span>
+      </div>
+      }
+
+      <div
+<<<<<<< HEAD
+        class="switch "
+=======
+        class="switch flex items-center justify-center min-w-[50px] h-11 cursor-pointer"
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+        (click)="darkMode.set(!darkMode())"
+      >
+        @if(darkMode()){
+        <img
+          src="icons/switch_active.png"
+<<<<<<< HEAD
+          class="icon"
+=======
+          class="w-[30px] mx-3 text-[20px]"
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+          alt=""
+        />
+        }@else {
+        <img
+          src="icons/switch_disabled.png"
+<<<<<<< HEAD
+          class="icon"
+=======
+          class="w-[30px] mx-3 text-[20px]"
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+          alt=""
+        />
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<<<<<<< HEAD
+<main >
+  <app-nav-bar/>
+
+  <div class="contenido">
+=======
+<main class="sm:ml-64 ml-1 rounded-lg  m-1 h-screen">
+  <app-nav-bar/>
+
+  <div class="">
+>>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+    <router-outlet />
+  </div>
+ 
+</main>
+
+

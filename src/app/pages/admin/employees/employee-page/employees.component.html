@@ -1,0 +1,46 @@
+<!-- Main modal -->
+
+<div
+  class="sm:my-2 sm:ml-1 bg-white sm:p-5 mb-5 dark:bg-slate-800 rounded-lg min-h-96 shadow-lg shadow-blue-300"
+>
+  <div class="flex flex-row py-5 justify-between items-center">
+    <h2
+      class="p-2 text-xl sm:text-3xl font-semibold text-blue-600 dark:text-blue-300"
+    >
+      Empleados
+    </h2>
+
+    <button
+      data-modal-target="modal-create-employee"
+      data-modal-toggle="modal-create-employee"
+      class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+    >
+
+      <span
+        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+      >
+      
+        Agrergar Empleado
+      </span>
+
+      <app-employee-add/>
+    </button>
+  </div>
+
+  <div>
+    @for(departament of departamentsWithEmployees; track departament.id_departamento) {
+
+    <h2 class="text-slate-400 p-3 text-lg sm:text-2xl font-semibold py-5">
+      Departamento de
+      <span class="text-green-300">{{ departament.nombreDepartamento }}</span>
+    </h2>
+
+    <div class="flex flex-wrap flex-row gap-2 sm:gap-6 flex-1 relative">
+      @for (employee of employees; track employee.id_Empleado) {
+      @if(employee.departamento_Id === departament.id_departamento){
+      <app-employee-card [employee]="employee" />
+      } }
+    </div>
+    }
+  </div>
+</div>

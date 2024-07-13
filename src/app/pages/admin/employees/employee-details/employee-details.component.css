@@ -1,0 +1,215 @@
+.container {
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 1.25rem;
+  }
+}
+
+.container > * + * {
+  margin-top: 1rem;
+}
+
+.container .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .header .data {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.container .header .data img {
+  width: 112px;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.container .header .data .name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #60a5fa;
+  margin: 0px;
+}
+
+.container .header .data .name_placeholder {
+  font-size: 1.125rem;
+  color: #94a3b8;
+  margin: 0px;
+}
+
+.container .header .active {
+  display: inline-block;
+  padding: 1px 4px;
+  font-size: 1.125rem;
+  font-weight: bold;
+  border-radius: 0.75rem;
+  background-color: #86efac;
+  color: #22c55e;
+}
+
+.container .header .inactive {
+  display: inline-block;
+  padding: 1px 4px;
+  font-size: 1.125rem;
+  font-weight: bold;
+  border-radius: 0.75rem;
+  background-color: #fca5a5;
+  color: #ef4444;
+}
+
+.container .title_sesion {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #64748b;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.contact .ubication {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #90cdf4;
+  color: #3182ce;
+  align-items: center;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.contact .ubication img {
+  width: 24px;
+}
+
+.contact .email {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #90cdf4;
+  color: #3182ce;
+  align-items: center;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.contact .email img {
+  width: 24px;
+}
+
+.contact .phone {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #90cdf4;
+  color: #3182ce;
+  align-items: center;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.contact .phone img {
+  width: 24px;
+}
+
+.container .info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.container .info_item {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 0.5rem;
+  color: #1a202c;
+  align-items: center;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.container .info_item img {
+  width: 44px;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: #accaee;
+}
+
+.container .info_item .placeholder {
+  font-size: 10px;
+  color: #94a3b8;
+
+  margin: 0px;
+}
+
+.container .info_item .title_item {
+  margin: 0px;
+}
+
+.container .sesion_state {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .sesion_state .states_items {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.container .sesion_state .state {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.container .sesion_state .active {
+  background-color: #86efac;
+  color: #22c55e;
+}
+
+.container .sesion_state .inactive {
+  background-color: #fca5a5;
+  color: #ef4444;
+}
+
+@media (max-width: 768px) {
+  .container .header .data img {
+    width: 50px;
+  }
+
+  .container .header .data .name {
+    font-size: 1rem;
+  }
+  .container .header .data .name_placeholder {
+    font-size: 0.875rem;
+  }
+}
+
+p-speedDial {
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+}
+
+
+ 
+
+ 

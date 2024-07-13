@@ -1,0 +1,35 @@
+<div class="p-5 my-2 ml-1 shadow-md shadow-blue-300 rounded-lg bg-white dark:bg-slate-800 sm:min-h-80">
+
+   <div class="flex flex-row py-5 justify-between items-center">
+      <h2
+        class="p-2 text-xl sm:text-3xl font-semibold text-blue-600 dark:text-blue-300"
+      >
+        Empleados
+      </h2>
+  
+      <button
+        data-modal-target="modal-create-departament"
+        data-modal-toggle="modal-create-departament"
+        class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+      >
+  
+        <span
+          class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+        >
+        
+          Agrergar Departament
+        </span>
+  
+        <app-departament-add (departamentAdd)="handleCreateDepartament($event)"/>
+      </button>
+    </div>
+
+   
+   <div class="flex flex-wrap gap-2 sm:w-auto w-full">
+      @for(departament of departaments; track departament.id_departamento){
+         <app-departament-card [departament]="departament" (departamentDelete)="(handleDeleteDepartament($event))" />
+      }
+
+   </div>
+   
+</div>

@@ -1,0 +1,75 @@
+<div class="p-5 my-2 ml-1 shadow-md shadow-blue-300 rounded-lg bg-white dark:bg-slate-800">
+  <h2 class="text-lg font-semibold text-blue-500 sm:text-2xl">
+    Resultados busqueda:
+    <span class="font-bold text-green-400">{{ searchTerm }}</span>
+  </h2>
+
+  <div class="flex flex-col sm:flex-row">
+    <div class="mt-8 border-r-2 border-slate-300 max-w-80">
+      <h3 class="font-semibold text-lg sm:text-xl text-slate-500 mt-5 mb-2">
+        Filtros
+      </h3>
+      <div class="flex flex-wrap gap-2">
+        <div class="w-full">
+         <form [formGroup]="departamentForm" (ngSubmit)="filterDepartament()" class="max-w-sm mx-auto w-full ">
+            <label
+               for="countries"
+               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+               >Departamento</label
+             >
+            <div class="flex">
+               
+             <select
+              formControlName="departament"
+               id="countries"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             >
+               <option selected>Departamentos</option>
+
+               @for(departamentOption of departamentsFilterOptions ; track departamentOption.id_departamento)
+               {
+                <option value="{{departamentOption.id_departamento}}">{{departamentOption.nombreDepartamento}}</option>
+                }
+               
+             </select>
+             <button type="submit" class="p-2.5 ms-2 text-sm h-min  font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+               <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+               </svg>
+               <span class="sr-only">Buscar</span>
+           </button>
+            </div>
+             
+           </form>
+        </div>
+
+        <span
+          class="bg-gray-100 text-gray-800 text-xs sm:text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500"
+          >Activo</span
+        >
+        <span
+          class="bg-gray-100 text-gray-800 text-xs sm:text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500"
+          >Inactivo</span
+        >
+        <span
+          class="bg-gray-100 text-gray-800 text-xs sm:text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500"
+          >Vacaciones</span
+        >
+        <span
+          class="bg-gray-100 text-gray-800 text-xs sm:text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500"
+          >Licencia</span
+        >
+        <span
+          class="bg-gray-100 text-gray-800 text-xs sm:text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500"
+          >Desempeño</span
+        >
+      </div>
+    </div>
+    <!-- Resultados busqueda -->
+    <div class="flex flex-wrap gap-2 sm:gap-6 justify- mt-8 sm:px-5">
+      @for (result of results; track result.id_Empleado) {
+      <app-employee-card [employee]="result" />
+      }
+    </div>
+  </div>
+</div>

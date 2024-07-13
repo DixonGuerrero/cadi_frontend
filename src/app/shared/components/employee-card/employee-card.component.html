@@ -1,0 +1,89 @@
+
+<app-employee-details [employee]="employee" />
+
+<a
+  [attr.data-modal-target]="'employee-details-' + employee.id_Empleado"
+  [attr.data-modal-toggle]="'employee-details-' + employee.id_Empleado"
+  class="w-80 h-48 shadow-lg shadow-green-300 rounded-lg p-2 flex flex-col justify-around"
+>
+  <div class="flex flex-row gap-2 items-center justify-between">
+    <div class="flex flex-row gap-2 items-center">
+      <img src="{{ photo }}" class="w-8 rounded-full" alt="" />
+      <div>
+        @if(employee.estado){
+        <p
+          class="inline-block py-[1px] px-[3px] text-[10px] font-bold rounded-lg bg-green-300 text-green-500"
+        >
+          Activo
+        </p>
+        }@else {
+        <p
+          class="inline-block py-[1px] px-[3px] text-[10px] font-bold rounded-lg bg-red-300 text-red-500"
+        >
+          Inactivo
+        </p>
+        }
+
+        <p class="text-[8px] text-slate-500">Estatus del empleado</p>
+      </div>
+    </div>
+
+    <div class="flex flex-row gap-2 items-center">
+      <img
+        src="icons/calendar.png"
+        class="w-7 p-1 bg-blue-300 rounded-full"
+        alt=""
+      />
+      <div>
+        <p class="text-[10px] dark:text-white font-bold text-black">
+          {{ hoursWorked }} hrs
+        </p>
+        <p class="text-[8px] text-slate-500">Horas trabajadas en la semana</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-6">
+    <h2 class="text-[12px] font-bold text-blue-400">
+      {{ employee.nombre + " " + employee.apellido }}
+    </h2>
+    <p class="text-[8px] text-slate-500">
+      {{ employee.fecha_Nacimiento }} - {{ employee.direccion }} -
+      {{ employee.email }} - {{ employee.telefono }}
+    </p>
+  </div>
+
+  <div class="flex flex-row gap-2 items-center justify-between">
+    <div class="flex flex-row gap-2 items-center">
+      <img
+        src="icons/briefcase.png"
+        class="w-7 p-1 bg-blue-300 rounded-full"
+        alt=""
+      />
+      <div>
+        <p class="text-[10px] dark:text-white font-bold text-black">
+          {{ departament }}
+        </p>
+        <p class="text-[8px] text-slate-500">Departamento</p>
+      </div>
+    </div>
+
+    <div class="flex flex-row gap-2 items-center">
+      <img
+        src="icons/watch.png"
+        class="w-7 p-1 bg-blue-300 rounded-full"
+        alt=""
+      />
+      <div>
+        <p class="text-[10px] dark:text-white font-bold text-black">
+          {{ timeServide }} yrs
+        </p>
+        <p class="text-[8px] text-slate-500">Tiempo de servicio</p>
+      </div>
+    </div>
+  </div>
+</a>
+
+
+  
+
