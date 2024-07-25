@@ -1,93 +1,99 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { IDepartment, IEmployee } from '../../../core/models/types';
-import { EmployeeCardComponent } from '../../../shared/components/employee-card/employee-card.component';
 import { NavBarComponent } from '../../../shared/components/nav-bar/nav-bar.component';
-import { SearchService } from '../../../core/services/search.service';
 import { Subscription } from 'rxjs';
 import { EmployeeService } from '../../../core/services/employee.service';
 import { DepartamentService } from '../../../core/services/departament.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { EmployeeCardComponent } from '../employees/employee-card/employee-card.component';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ButtonModule } from 'primeng/button';
+import { SearchService } from '../../../core/services/admin/search.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [EmployeeCardComponent,NavBarComponent, ReactiveFormsModule],
+  imports: [EmployeeCardComponent, NavBarComponent, ReactiveFormsModule, MultiSelectModule, ButtonModule],
   templateUrl: './search.component.html',
-  styleUrl: './search.component.css'
+  styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
 
   searchTerm = '';
-  departamentsFilterOptions: IDepartment[] = []
-  departamentService = inject(DepartamentService)
-  results: IEmployee[] = []; 
-  employeeService = inject(EmployeeService)
-
-  resultsCopyBeforeFilter:IEmployee[] = []
-
-
+  departamentsFilterOptions: IDepartment[] = [];
+  departamentService = inject(DepartamentService);
+  results: IEmployee[] = [];
+  employeeService = inject(EmployeeService);
+  messageService = inject(MessageService);
+  resultsCopyBeforeFilter: IEmployee[] = [];
 
   departamentForm = new FormGroup({
-    departament: new FormControl(0)
-  })
+    departament: new FormControl()
+  });
 
   private searchSubscription: Subscription = new Subscription();
-
 
   constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {
+    console.log('INIT SEARCH COMPONENT');
+
+    // Inicializa el término de búsqueda si ya existe
+    this.searchTerm = this.searchService.getSearchTerm();
+    console.log('TERMINO DE BUSQUEDA ESTABLECIDO:', this.searchTerm);
+this.loadDataDepartament();
+    // Suscríbete a los cambios en el término de búsqueda
     this.searchSubscription = this.searchService.searchTerm$.subscribe(term => {
       this.searchTerm = term;
+      console.log('TERMINO DE BUSQUEDA RECIBIDO EN SUSCRIPCIÓN:', this.searchTerm);
 
-      console.log('ESTE ES EL TERMINO DE BUSQUEDA', this.searchTerm)
-      this.loadDataDepartament()
-      this.search()
+      if (this.searchTerm.trim().length > 0) {
+        
+        this.search();
+      } else {
+        console.log('El término de búsqueda está vacío, omitiendo búsqueda inicial.');
+      }
 
-      this.resultsCopyBeforeFilter = this.results
-
+      this.resultsCopyBeforeFilter = this.results;
     });
   }
 
-  loadDataDepartament(){
-    this.departamentService.getDepartmentsByCompany().subscribe((departaments) => {
-      this.departamentsFilterOptions = departaments
-    })
+  loadDataDepartament(): void {
+    this.departamentService.getDepartmentsByCompany().subscribe(departaments => {
+      console.log('DEPARTAMENTOS:', departaments);
+      this.departamentsFilterOptions = departaments;
+    });
   }
 
   search(): void {
-    this.employeeService.getEmployeesByCompany().subscribe((employees) => {
-      this.results = employees.filter((employee) => {
-        return employee.nombre.toLowerCase().includes(this.searchTerm.toLowerCase());
-      });
-    });
-  }
 
-  filterDepartament(){
-    const departamentId = this.departamentForm.value.departament ?? 0;
-
-    if(departamentId === 0){
+    if(this.searchTerm === '') {
+      this.messageService.add({severity:'error', summary:'Error', detail:'El campo de búsqueda no puede estar vacío'});
       return;
     }
 
+    this.employeeService.getEmployeesByCompany().subscribe(employees => {
+      this.results = employees.filter(employee =>
+        employee.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    });
+  }
 
-    this.results = this.resultsCopyBeforeFilter
+  filterDepartament(): void {
+    const departamentFiltering = this.departamentForm.value.departament as IDepartment[];
+
+    if (departamentFiltering === null) {
+      return;
+    }
+
+    console.log('departamentFiltering', departamentFiltering[0]);
     
+    this.results = this.resultsCopyBeforeFilter.filter(employee => employee.departamento_Id === departamentFiltering[0].id_departamento);
 
-    console.log('ESTE ES EL ID DEL DEPARTAMENTO', departamentId)
-
-    console.log('ESTOS SON LOS EMPLEADOS', this.results)
-
-    this.results =  this.results.filter((employe) => employe.departamento_Id == departamentId)
-
-    console.log('empleado filtrado por departametno ', this.results)
-    
   }
 
   ngOnDestroy(): void {
     this.searchSubscription.unsubscribe();
   }
-
-
- 
 }

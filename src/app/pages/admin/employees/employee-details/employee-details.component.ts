@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component, OnInit, inject } from '@angular/core';
 import { DialogService, DynamicDialogComponent, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IEmployee } from '../../../../core/models/employee.interface';
@@ -7,31 +6,19 @@ import { DepartamentService } from '../../../../core/services/admin/departament.
 import { CommonModule } from '@angular/common';
 import { MenuItem, MessageService } from 'primeng/api';
 import { SpeedDial, SpeedDialModule } from 'primeng/speeddial';
-=======
-import { AfterViewInit, Component, Input, OnInit, signal } from '@angular/core';
-import { IEmployee } from '../../../../core/models/types';
-import { initFlowbite } from 'flowbite';
-import { EmployeeCardComponent } from '../../../../shared/components/employee-card/employee-card.component';
 import { VacationsAddComponent } from '../../vacations/vacations-add/vacations-add.component';
 import { HoursAddComponent } from '../../hours-worked/hours-add/hours-add.component';
 import { LicenseAddComponent } from '../../license/license-add/license-add.component';
-import { CommonModule } from '@angular/common';
 import { EmployeeEditComponent } from '../employee-edit/employee-edit.component';
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
 
 @Component({
   selector: 'app-employee-details',
   standalone: true,
-<<<<<<< HEAD
   imports: [CommonModule,SpeedDialModule],
-=======
-  imports: [EmployeeCardComponent,VacationsAddComponent,HoursAddComponent, LicenseAddComponent, CommonModule,EmployeeEditComponent],
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
   templateUrl: './employee-details.component.html',
   styleUrl: './employee-details.component.css'
 })
 export class EmployeeDetailsComponent implements OnInit{
-<<<<<<< HEAD
 
   departamentService = inject(DepartamentService);
   messageService = inject(MessageService);
@@ -45,30 +32,8 @@ export class EmployeeDetailsComponent implements OnInit{
   timeServide = 0;
 
   items: MenuItem[] | undefined;
-  
-  photo = 'images/admin.jpg';
 
   employee: IEmployee = {
-=======
-  hoursWorked = 12;
-  departament = 'Software Development';
-  timeServide = 0;
-  photo = 'images/employee.jpg';
-
-  openModalVacations = signal<boolean>(false);
-
-
-  ngOnInit(): void {
-    initFlowbite();
-    this.calculateTimeService();
-    this.formatFecha();
-    
-  }
-
-  
-
-  @Input() employee: IEmployee = {
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
     id_Empleado: 0,
     nombre: '',
     apellido: '',
@@ -80,9 +45,9 @@ export class EmployeeDetailsComponent implements OnInit{
     puesto: '',
     vacaciones: false,
     licencia: false,
-<<<<<<< HEAD
     salario: 0,
     estado: true,
+    imagen: '',
     departamento_Id: 0,
   }
 
@@ -137,12 +102,6 @@ export class EmployeeDetailsComponent implements OnInit{
       this.departament = data.resultado as IDepartment;
   })
   }
-=======
-    salario:  0,
-    estado: true,
-    departamento_Id: 0,
-  };
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
 
   calculateTimeService() {
     const currentDate = new Date();
@@ -159,11 +118,5 @@ export class EmployeeDetailsComponent implements OnInit{
   handleUpdateEmployee(employee: IEmployee) {
     this.employee = employee;
   }
-<<<<<<< HEAD
   
-=======
-
-  
- 
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
 }

@@ -11,9 +11,9 @@ import {
   Rol,
 } from '../../../core/models/types';
 import { Subscription } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../core/services/auth.service';
 import { format } from 'date-fns';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-credentials',
@@ -37,7 +37,7 @@ export class CredentialsComponent implements OnInit {
   companyService = inject(CompanyService);
   departamentService = inject(DepartamentService);
   employeeService = inject(EmployeeService);
-  toastrService = inject(ToastrService);
+  messageService = inject(MessageService);
   authS = inject(AuthService);
 
   ngOnInit(): void {
@@ -94,13 +94,13 @@ export class CredentialsComponent implements OnInit {
       (response) => {
         this.createdEmployee = response;
         console.log('Employee created:', this.createdEmployee);
-        this.toastrService.success('Empleado creado');
+        this.messageService.add({severity:'success', summary:'Success', detail:'Empleado creado con éxito'});
 
         this.generateUser();
       },
       (error) => {
         console.error('Error creating Employee:', error);
-        this.toastrService.error('Error al crear empleado');
+        this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear empleado'});
       }
     );
 
@@ -121,11 +121,11 @@ export class CredentialsComponent implements OnInit {
     this.authS.register(userSuperAdmin).subscribe(
       (response) => {
         console.log('User created:', response);
-        this.toastrService.success('Usuario creado');
+        this.messageService.add({severity:'success', summary:'Success', detail:'Usuario creado con éxito'});
       },
       (error) => {
         console.error('Error creating User:', error);
-        this.toastrService.error('Error al crear usuario');
+        this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear usuario'});
       }
     );
 
@@ -154,6 +154,6 @@ export class CredentialsComponent implements OnInit {
   }
 
   onCopy() {
-    this.toastrService.success('Credenciales copiadas al portapapeles.');
+    this.messageService.add({severity:'info', summary:'Info', detail:'Copiado al portapapeles'});
   }
 }

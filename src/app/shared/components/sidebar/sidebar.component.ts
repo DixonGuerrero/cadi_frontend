@@ -1,31 +1,32 @@
 import { Component, HostBinding, OnInit, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
-<<<<<<< HEAD
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
-=======
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+import { ICompany } from '../../../core/models/company.interface';
+import { TokenService } from '../../../core/services/auth/token.service';
+import { CompanyService } from '../../../core/services/company.service';
+import { ThemeService } from '../../../core/services/admin/theme.service';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-<<<<<<< HEAD
-  imports: [RouterOutlet, RouterLinkActive,RouterLink, NavBarComponent,MenuModule, ButtonModule],
-=======
-  imports: [RouterOutlet, RouterLinkActive,RouterLink, NavBarComponent],
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+  imports: [
+    RouterOutlet,
+    RouterLinkActive,
+    RouterLink,
+    NavBarComponent,
+    MenuModule,
+    ButtonModule,
+  ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit {
-<<<<<<< HEAD
-
   items: MenuItem[] | undefined;
+  empresa: ICompany | undefined;
 
-=======
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
   logo: any;
   barraLateral: any;
   spans: any;
@@ -33,37 +34,50 @@ export class SidebarComponent implements OnInit {
   circulo: any;
   menu: any;
   main: any;
-  
-  darkMode = signal<boolean>(true)
-  bigMenu = signal<boolean>(false)
+
+  darkMode = signal<boolean>(true);
+  bigMenu = signal<boolean>(false);
+
+  constructor(
+    private tokenService: TokenService,
+    private companyService: CompanyService,
+    public themeService: ThemeService
+  ) {}
 
   ngOnInit(): void {
-<<<<<<< HEAD
-
-     this.items = [
+    this.items = [
+      {
+        label: 'Options',
+        items: [
           {
-              label: 'Options',
-              items: [
-                  {
-                      label: 'Refresh',
-                      icon: 'pi pi-refresh'
-                  },
-                  {
-                      label: 'Export',
-                      icon: 'pi pi-upload'
-                  }
-              ]
-          }
-      ];
-=======
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+            label: 'Refresh',
+            icon: 'pi pi-refresh',
+          },
+          {
+            label: 'Export',
+            icon: 'pi pi-upload',
+          },
+        ],
+      },
+    ];
     this.initializeMenu();
-    this.checkTimeForDarkMode()
+    this.checkTimeForDarkMode();
+    this.loadDataCompany();
   }
 
-  @HostBinding('class.dark') get mode() {
-    return this.darkMode()
+  toggleDarkMode() {
+    this.themeService.updateDarkMode();
   }
+
+  loadDataCompany() {
+    const idEmpresa = this.tokenService.getEmpresaId();
+
+    console.log('ID EMPRESA', idEmpresa);
+    this.companyService.getCompany(idEmpresa).subscribe((response) => {
+      this.empresa = response.resultado as ICompany;
+    });
+  }
+
 
   initializeMenu(): void {
     this.logo = document.getElementById('logo');
@@ -74,23 +88,19 @@ export class SidebarComponent implements OnInit {
     this.circulo = document.querySelector<HTMLDivElement>('.circulo');
     this.menu = document.querySelector<HTMLDivElement>('.menu');
     this.main = document.querySelector<HTMLElement>('main');
-
   }
 
   toggleLogo() {
     this.barraLateral.classList.toggle('mini-barra-lateral');
     this.main.classList.toggle('min-main');
-<<<<<<< HEAD
-    console.log(this.main)
-=======
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+    console.log(this.main);
     this.spans.forEach((span: any) => {
       span.classList.toggle('oculto');
     });
   }
 
   sizeSidebar() {
-    this.bigMenu.set(!this.bigMenu())
+    this.bigMenu.set(!this.bigMenu());
     this.barraLateral.classList.toggle('max-barra-lateral');
     if (this.barraLateral.classList.contains('max-barra-lateral')) {
       if (this.menu.children.length > 1) {
@@ -114,12 +124,11 @@ export class SidebarComponent implements OnInit {
 
   checkTimeForDarkMode(): void {
     const currentHour = new Date().getHours();
-    if (currentHour >= 18 || currentHour < 6) { 
-      this.darkMode.set(true);
+    if (currentHour >= 18 || currentHour < 6) {
+      this.toggleDarkMode()
     } else {
       this.darkMode.set(false);
     }
   }
-
-  
 }
+ 

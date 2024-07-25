@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, Input, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
-import { ModalService } from '../../../../core/services/modal.service';
-import { ToastrService } from 'ngx-toastr';
+
 import { addDays, isSameDay, isWeekend, parseISO, format } from 'date-fns';
 import { IVacation } from '../../../../core/models/types';
 import { VacationService } from '../../../../core/services/vacation.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-vacations-add',
@@ -28,10 +28,10 @@ export class VacationsAddComponent implements AfterViewInit {
   //Service 
   vacationService = inject(VacationService);
 
-  constructor(public modalService: ModalService, public toastService: ToastrService) {}
+  constructor( public messageService: MessageService) {}
 
   ngAfterViewInit() {
-    this.modalService.initModal('vacations-modal' + this.id_employee);
+   
   }
 
   formVacation = new FormGroup({
@@ -40,7 +40,7 @@ export class VacationsAddComponent implements AfterViewInit {
 
   onVacationAdd() {
     if (this.formVacation.invalid) {
-      this.toastService.error('Por favor, rellene todos los campos.');
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Por favor, complete el formulario.' });
       return;
     }
 
@@ -59,15 +59,22 @@ export class VacationsAddComponent implements AfterViewInit {
     this.vacationService.createVacation(vacations).subscribe(
       (response) => {
         console.log('Vacation created:', response);
-        this.toastService.success('Vacaciones creadas exitosamente.');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Vacaciones creadas',
+          detail: 'Vacaciones creadas exitosamente.'
+        })
       },
       (error) => {
         console.error('Error creating vacation:', error);
-        this.toastService.error('Error al crear vacaciones.');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Ocurrió un error al crear las vacaciones.'
+        })
       }
     );
     this.formVacation.reset();
-    this.modalService.hideModal();
   }
 
   onStartDateChange(): void {
@@ -120,13 +127,13 @@ export class VacationsAddComponent implements AfterViewInit {
 
   validateVacationDate(): void {
     if (this.formVacation.value.startDate === null || this.formVacation.value.startDate === undefined) {
-      this.toastService.error('Por favor, seleccione una fecha de inicio de vacaciones.');
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Por favor, seleccione una fecha de inicio.' });
       return;
     }
 
     if (this.formVacation.value.startDate < this.formatDate(new Date())) {
       console.log('validation second if');
-      this.toastService.error('La fecha de inicio de las vacaciones no puede ser menor a la fecha actual.');
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La fecha de inicio no puede ser menor a la fecha actual.' });
       return;
     }
 

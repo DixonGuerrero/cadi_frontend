@@ -1,5 +1,3 @@
-// search.service.ts
-
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -13,10 +11,12 @@ export class SearchService {
   constructor() {}
 
   setSearchTerm(term: string): void {
-    this.searchTermSubject.next(term);
+    console.log('ESTE ES EL TERMINO DE BUSQUEDA', term);
+    return this.searchTermSubject.next(term);
   }
 
   getSearchTerm(): string {
+    console.log('ESTE ES EL TERMINO DE BUSQUEDA', this.searchTermSubject.value);
     return this.searchTermSubject.value;
   }
 }

@@ -1,10 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ModalService } from '../../../../core/services/modal.service';
 import { TokenService } from '../../../../core/services/token.service';
 import { DepartamentService } from '../../../../core/services/departament.service';
 import { IDepartment } from '../../../../core/models/types';
-import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-departament-add',
@@ -17,10 +16,9 @@ export class DepartamentAddComponent implements OnInit {
 
   @Output() departamentAdd: EventEmitter<IDepartment> = new EventEmitter<IDepartment>();
 
-  modalService = inject(ModalService)
   tokenService = inject(TokenService)
   departamentService = inject(DepartamentService)
-  toast = inject(ToastrService)
+  messageService = inject(MessageService)
 
   formNewDepartament = new FormGroup({
     nombreDepartament: new FormControl(''),
@@ -28,7 +26,6 @@ export class DepartamentAddComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.modalService.initModal("modal-create-departament")
   }
 
 
@@ -48,21 +45,19 @@ export class DepartamentAddComponent implements OnInit {
         response =  response as IDepartment
   
         if (response === null || response === undefined) {
-          this.toast.error('Error al crear Departamento');
+          this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear Departamento'});
           return;
         }
   
         if (!response.id_departamento) {
-          this.toast.error('Error al crear Departamento');
+          this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear Departamento'});
           return;
         }
 
         this.departamentAdd.emit(response)
-  
-        this.toast.success('Departamento creado correctamente');
+        this.messageService.add({severity:'success', summary:'Success', detail:'Departamento creado con exito'});
         this.departamentService.updateDepartamentCache();
   
-        this.modalService.hideModal();
       });
 
   }

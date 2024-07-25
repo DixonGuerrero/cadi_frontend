@@ -1,23 +1,25 @@
 <!-- Main modal -->
 
-<div class="container">
-  <div class="header">
+<div class="w-full sm:w-ful rounded-[0.375rem] bg-slate-200 dark:bg-slate-600">
+  <div class="header ">
     <h2 class="title">Empleados</h2>
 
     <p-button
-      label="Agregar Empleado"
+      label="Crear"
       icon="pi pi-plus-circle"
       iconPos="right"
+      class="mr-2 "
     />
   </div>
 
   <div>
+    @if(employees.length != 0) {
     @for(departament of departamentsWithEmployees; track
     departament.id_departamento) {
 
-    <h2 class="title_departament">
+    <h2 class="px-4 text-xl text-slate-500 dark:text-slate-300 font-medium">
       Departamento de
-      <span>{{ departament.nombreDepartamento }}</span>
+      <span class="text-green-400">{{ departament.nombreDepartamento }}</span>
     </h2>
 
     <div class="content">
@@ -34,6 +36,17 @@
           
         </ng-template>
       </p-carousel>
+    </div>
+    }}@else {
+    <div class="flex w-full items-center justify-center flex-col">
+      <img
+        src="icons/empty.png"
+        alt="No hay empleados"
+        class="w-1/4"
+      />
+      <h2 class="text-xl text-blue-500 dark:text-green-400">
+        No hay empleados registrados
+      </h2>
     </div>
     }
   </div>

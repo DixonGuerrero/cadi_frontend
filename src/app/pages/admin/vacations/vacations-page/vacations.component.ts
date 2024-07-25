@@ -1,10 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { IEmployee } from '../../../../core/models/types';
-import { EmployeeCardComponent } from '../../../../shared/components/employee-card/employee-card.component';
-import { initFlowbite } from 'flowbite';
 import { TokenService } from '../../../../core/services/token.service';
 import { DepartamentService } from '../../../../core/services/departament.service';
 import { EmployeeService } from '../../../../core/services/employee.service';
+import { EmployeeCardComponent } from '../../employees/employee-card/employee-card.component';
 
 @Component({
   selector: 'app-vacations',

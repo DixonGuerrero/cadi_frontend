@@ -56,6 +56,7 @@ export class EmployeeCardComponent {
     licencia: false,
     salario: 0,
     estado: true,
+    imagen: '',
     departamento_Id: 0,
   };
 
@@ -66,7 +67,7 @@ export class EmployeeCardComponent {
       header: 'Detalles Empleados',
       width: '50vw',
       height: '70vh',
-      contentStyle: { overflow: 'auto' },
+      contentStyle: { overflow: 'auto',},
       breakpoints: {
         '960px': '75vw',
         '640px': '90vw',

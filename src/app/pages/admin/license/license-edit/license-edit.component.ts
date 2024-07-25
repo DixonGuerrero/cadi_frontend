@@ -7,12 +7,12 @@ import {
   Output,
   inject,
 } from '@angular/core';
-import { ModalService } from '../../../../core/services/modal.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+
 import { LicenseService } from '../../../../core/services/license.service';
 import { ILicense, LicenseType } from '../../../../core/models/types';
-import { Modal, ModalInterface, ModalOptions } from 'flowbite';
+import { MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-license-edit',
@@ -21,7 +21,7 @@ import { Modal, ModalInterface, ModalOptions } from 'flowbite';
   templateUrl: './license-edit.component.html',
   styleUrl: './license-edit.component.css',
 })
-export class LicenseEditComponent implements AfterViewInit, OnInit {
+export class LicenseEditComponent implements OnInit {
   @Input() licenseEdit: ILicense = {
     id_Licencia: 0,
     fecha_Fin: '',
@@ -30,13 +30,12 @@ export class LicenseEditComponent implements AfterViewInit, OnInit {
     tipo: 'Luto',
   };
 
-  modal: ModalInterface | null = null;
+
 
   @Output() licenseEdited: EventEmitter<ILicense> =
     new EventEmitter<ILicense>();
   licenseService = inject(LicenseService);
-  toastrSvc = inject(ToastrService);
-  modalService = inject(ModalService);
+  messageService = inject(MessageService);
 
   licenceAddForm = new FormGroup({
     startDate: new FormControl(''),
@@ -49,37 +48,8 @@ export class LicenseEditComponent implements AfterViewInit, OnInit {
     this.initFormValues();
   }
 
-  ngAfterViewInit(): void {
-    this.initModal();
-  }
 
-  initModal() {
-    const modalElement: HTMLElement =
-      document.getElementById(
-        `license-modal-edit${this.licenseEdit.empleado_Id}`
-      ) ?? document.createElement('div');
 
-    console.log('modalElement desde license Edit', modalElement);
-
-    if (modalElement) {
-      const modalOptions: ModalOptions = {
-        placement: 'bottom-right',
-        backdrop: 'dynamic',
-        backdropClasses:
-          'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
-        closable: true,
-      };
-
-      // instance options object
-      const instanceOptions = {
-        id: 
-        `license-modal-edit${this.licenseEdit.empleado_Id}`,
-        override: false,
-      };
-
-      this.modal = new Modal(modalElement, modalOptions, instanceOptions);
-    }
-  }
 
   private initFormValues() {
     this.licenceAddForm.patchValue({
@@ -104,22 +74,27 @@ export class LicenseEditComponent implements AfterViewInit, OnInit {
 
     this.licenseService.updateLicense(licenseAddData).subscribe(
       (response) => {
-        this.toastrSvc.success('Licencia editada');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Licencia editada',
+          detail: 'Licencia editada correctamente',
+        });
         console.log('License edited:', response);
         this.licenseEdit = licenseAddData;
 
         this.licenseEdited.emit(this.licenseEdit);
       },
       (error) => {
-        this.toastrSvc.error('Error al editar licencia');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error al editar licencia',
+        });
         console.error('Error editing License:', error);
       }
     );
 
-    this.modal?.isHidden();
-    this.modal?.hide();
-    this.modal?.isVisible();
-    this.modal?.destroy();
+
   }
 
   onDateClick(event: MouseEvent) {

@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { ButtonModule } from 'primeng/button';
+import { RouterLink } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { ToastModule } from 'primeng/toast';
-import { MenuModule } from 'primeng/menu';
-=======
-import { RouterLink } from '@angular/router';
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-<<<<<<< HEAD
   imports: [ButtonModule, SpeedDialModule, ToastModule, MenuModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css',
@@ -46,12 +42,4 @@ export class LandingPageComponent {
       },
     ];
   }
-=======
-  imports: [RouterLink],
-  templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.css'
-})
-export class LandingPageComponent {
-
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
 }

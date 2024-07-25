@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { IDepartment } from '../../../../core/models/types';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { ModalService } from '../../../../core/services/modal.service';
 import { DepartamentService } from '../../../../core/services/departament.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-departament-edit',
@@ -26,15 +25,13 @@ export class DepartamentEditComponent implements OnInit , AfterViewInit{
    @Output() departamentEdited: EventEmitter<IDepartment> = new EventEmitter<IDepartment>();
 
    departamentService = inject(DepartamentService)
-   toastrSvc = inject(ToastrService);
-   modalService = inject(ModalService);
+   messageService = inject(MessageService)
 
    ngOnInit(): void {
      this.initFormValues()
    }
 
    ngAfterViewInit(): void {
-     this.modalService.initModal('departament-modal-edit' + this.departament.id_departamento)
    }
 
    departementForm = new FormGroup({
@@ -62,14 +59,22 @@ export class DepartamentEditComponent implements OnInit , AfterViewInit{
 
     this.departamentService.updateDepartament(departamentEditData).subscribe(
       (response) => {
-        this.toastrSvc.success('Licencia editada');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Departamento editado',
+          detail: 'Departamento editado correctamente',
+        });
         console.log('License edited:', response);
         this.departament = departamentEditData;
 
         this.departamentEdited.emit(this.departament);
       },
       (error) => {
-        this.toastrSvc.error('Error al editar licencia');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error al editar Departamento',
+        });
         console.error('Error editing License:', error);
       }
     );

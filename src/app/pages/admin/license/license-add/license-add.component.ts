@@ -1,10 +1,9 @@
 import { AfterViewInit, Component, Input, OnInit, inject } from '@angular/core';
-import { ModalService } from '../../../../core/services/modal.service';
 import { FormGroup, FormControl,ReactiveFormsModule } from '@angular/forms';
 import { ILicense, LicenseType } from '../../../../core/models/types';
 import { LicenseService } from '../../../../core/services/license.service';
-import { ToastrService } from 'ngx-toastr';
-import { Modal, ModalOptions, ModalInterface } from 'flowbite';
+import { MessageService } from 'primeng/api';
+
 
 
 @Component({
@@ -18,8 +17,7 @@ export class LicenseAddComponent  {
 
   @Input() id_employee: number = 0;
   licenseService = inject(LicenseService);
-  toastrSvc = inject(ToastrService);
-  modal: ModalInterface | null = null;  
+  messageService = inject(MessageService)
 
   licenceAddForm = new FormGroup({
     startDate: new FormControl(''),
@@ -27,44 +25,6 @@ export class LicenseAddComponent  {
     typeLicense: new FormControl(''),
   });
 
-
-  constructor( public modalService : ModalService) {
-
-    this.initModal('license-modal' + this.id_employee);
-  }
-
-
-
-  initModal(modalId: string, options: ModalOptions = {}) {
-    const modalElement: HTMLElement =
-      document.querySelector(`#${modalId}`) ?? document.createElement('div');
-
-      console.log('modalElement', modalElement)
-
-    if (modalElement) {
-      const modalOptions: ModalOptions = {
-        placement: 'bottom-right',
-        backdrop: 'dynamic',
-        backdropClasses:
-            'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
-        closable: true,
-        onHide: () => {
-          
-        },
-        onShow: () => {
-           
-        },
-        onToggle: () => {
-            
-        },
-        ...options,
-    };
-
-
-
-      this.modal = new Modal(modalElement, modalOptions);
-    }
-  }
 
 
   onLicenseAdd() {
@@ -77,18 +37,17 @@ export class LicenseAddComponent  {
 
     this.licenseService.createLicense(licenseAddData).subscribe(
       (response) => {
-        this.toastrSvc.success('Licencia creada');
+        this.messageService.add({severity:'success', summary:'Licencia creada', detail:'Licencia creada correctamente'})
         console.log('License created:', response);
       },
       (error) => {
-        this.toastrSvc.error('Error al crear licencia');
+        this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear licencia'})
         console.error('Error creating License:', error);
       }
     );
 
     this.licenceAddForm.reset()
-    this.modal?.hide()
-    this.modal?.destroy()
+  
     console.log('onLicenseAdd', licenseAddData);
   }
 

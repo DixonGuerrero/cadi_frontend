@@ -3,7 +3,7 @@ import { IEmployee, ILicense } from '../../../../core/models/types';
 import { EmployeeService } from '../../../../core/services/employee.service';
 import { format } from 'date-fns';
 import { LicenseEditComponent } from '../license-edit/license-edit.component';
-import { initFlowbite } from 'flowbite';
+
 
 @Component({
   selector: 'app-license-card',
@@ -25,7 +25,6 @@ export class LicenseCardComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    initFlowbite()
     this.loadDataEmploye()
   }
 

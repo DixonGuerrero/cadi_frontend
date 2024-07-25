@@ -1,6 +1,6 @@
-<router-outlet/>
-<<<<<<< HEAD
-<p-toast/>
-=======
+<div  [ngClass]="darkModeService.darkModeSignal()">
 
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+   <router-outlet/>
+   <p-toast [position]="'bottom-left'"/>
+</div>
+

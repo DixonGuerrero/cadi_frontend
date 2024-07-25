@@ -1,26 +1,12 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-=======
 import { Component, OnInit, inject } from '@angular/core';
-import { EmployeeCardComponent } from '../../../shared/components/employee-card/employee-card.component';
-import { IDepartment, IEmployee } from '../../../core/models/types';
+import { EmployeeCardComponent } from '../employees/employee-card/employee-card.component';
 import { RouterLink } from '@angular/router';
 import { EmployeeService } from '../../../core/services/employee.service';
-import { TokenService } from '../../../core/services/token.service';
-import { DepartamentService } from '../../../core/services/departament.service';
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
+import { IEmployee } from '../../../core/models/employee.interface';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-<<<<<<< HEAD
-  imports: [],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
-})
-export class DashboardComponent {
-
-=======
   imports: [EmployeeCardComponent, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
@@ -59,5 +45,4 @@ export class DashboardComponent implements OnInit {
   countEmployeesInVacation(){
     return this.employees.filter((employee) => employee.vacaciones).length.toString();
   }
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
 }

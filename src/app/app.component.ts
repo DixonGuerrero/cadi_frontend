@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 //Conguracion Prime NG
@@ -9,12 +8,15 @@ import { PrimeNGConfig } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
+import { ThemeService } from './core/services/admin/theme.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
+    CommonModule,
     // -> Modulos Basicos Prime NG
     ToastModule,
     ButtonModule,
@@ -25,6 +27,7 @@ import { MessageModule } from 'primeng/message';
 })
 export class AppComponent implements OnInit {
   title = 'cadiFront';
+  darkModeService: ThemeService = inject(ThemeService);
 
   constructor(private primengConfig: PrimeNGConfig) {}
 
@@ -57,25 +60,5 @@ export class AppComponent implements OnInit {
       medium: 'Medio',
       passwordPrompt: 'Ingrese una contraseña',
     })
-=======
-// src/app/app.component.ts
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { initFlowbite } from 'flowbite';
-
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  standalone: true,
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent implements OnInit {
-  title = 'Cadi';
-
-  ngOnInit(): void {
-    initFlowbite();
-   
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
   }
 }

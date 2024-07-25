@@ -27,6 +27,7 @@
 
 .card_employee .header img {
   width: 32px;
+  height: 32px;
   border-radius: 50%;
 }
 
@@ -58,7 +59,6 @@
 
 .card_employee .header .status {
   font-size: 8px;
-  color: #555;
   margin: 0px;
 }
 
@@ -74,11 +74,11 @@
   padding: 4px;
   border-radius: 50%;
   background-color: #b9d7f5;
+  object-fit: cover;
 }
 
 .card_employee .hours .time {
   font-size: 10px;
-  color: #555;
   font-weight: bold;
   margin: 0px;
 }

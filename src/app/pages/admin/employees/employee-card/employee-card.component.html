@@ -1,10 +1,10 @@
 <a
 (click)="show()"
-  class="card_employee"
+  class="dark:bg-blue-600 card_employee"
 >
   <div class="content">
     <div class="header">
-      <img src="{{ photo }}"  alt="" />
+      <img [src]="employee.imagen"  alt="" />
       <div>
         @if(employee.estado){
         <p
@@ -20,7 +20,7 @@
         </p>
         }
 
-        <p class="status">Estatus del empleado</p>
+        <p class="dark:text-blue-100 text-slate-500 text-[8px] m-0">Estatus del empleado</p>
       </div>
     </div>
 
@@ -31,19 +31,19 @@
         alt=""
       />
       <div>
-        <p class="time">
+        <p class="text-[10px] font-bold text-slate-500 dark:text-blue-300 m-0">
           {{ hoursWorked }} hrs
         </p>
-        <p class="time_placeholder">Horas trabajadas en la semana</p>
+        <p class="dark:text-blue-100 text-slate-500 text-[8px] m-0">Horas trabajadas en la semana</p>
       </div>
     </div>
   </div>
 
   <div class="info">
-    <h2 class="name">
+    <h2 class="text-lg font-bold text-green-400">
       {{ employee.nombre + " " + employee.apellido }}
     </h2>
-    <p class="direction">
+    <p class="text-[10px] text-center font-bold text-slate-500 dark:text-blue-200">
       {{ employee.fecha_Nacimiento }} - {{ employee.direccion }} -
       {{ employee.email }} - {{ employee.telefono }}
     </p>
@@ -56,10 +56,10 @@
         alt=""
       />
       <div>
-        <p class="name">
+        <p class="text-[10px] font-bold text-slate-500 dark:text-blue-300 m-0">
           {{ departament.nombreDepartamento }}
         </p>
-        <p class="name_placeholder">Departamento</p>
+        <p class="dark:text-blue-100 text-slate-500 text-[8px] m-0">Departamento</p>
       </div>
     </div>
 
@@ -69,10 +69,10 @@
         alt=""
       />
       <div>
-        <p class="time">
+        <p class="text-[10px] font-bold text-slate-500 dark:text-blue-300 m-0">
           {{ timeServide }} yrs
         </p>
-        <p class="time_placeholder">Tiempo de servicio</p>
+        <p class="dark:text-blue-100 text-slate-500 text-[8px] m-0">Tiempo de servicio</p>
       </div>
     </div>
   </div>

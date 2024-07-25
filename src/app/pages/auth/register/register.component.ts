@@ -3,8 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ICompany } from '../../../core/models/types';
 import { CompanyService } from '../../../core/services/company.service';
-import { ToastrService } from 'ngx-toastr';
-import { set } from 'date-fns';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +15,7 @@ import { set } from 'date-fns';
 export class RegisterComponent {
 
   companyService = inject(CompanyService);
-  toastService = inject(ToastrService);
+  messageService = inject(MessageService)
   router = inject(Router);
 
   resultCreateCompany: ICompany | any;
@@ -42,7 +41,7 @@ export class RegisterComponent {
       (response) => {
         this.resultCreateCompany = response;
         console.log('Company created:', this.resultCreateCompany);
-        this.toastService.success('Empresa creada');
+        this.messageService.add({severity:'success', summary:'Empresa creada', detail:'Empresa creada con éxito'});
 
         this.companyService.setCompanyCreated(this.resultCreateCompany);
 
@@ -52,7 +51,7 @@ export class RegisterComponent {
       },
       (error) => {
         console.error('Error creating Company:', error);
-        this.toastService.error('Error al crear empresa');
+        this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear la empresa'});
       }
     );
 

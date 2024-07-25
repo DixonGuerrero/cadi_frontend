@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { CompanyService } from '../../../core/services/company.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DepartamentService } from '../../../core/services/departament.service';
-import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-departament',
@@ -18,7 +18,7 @@ export class DepartamentComponent {
   companyCreated:ICompany | null = null;
   private companySuscription: Subscription = new Subscription();
   private departamentService = inject(DepartamentService);
-  private toastService = inject(ToastrService);
+  private messageService = inject(MessageService);
   private router = inject(Router);
   resultDepartamentCreated: IDepartment | any;
 
@@ -55,7 +55,7 @@ export class DepartamentComponent {
       (response) => {
         this.resultDepartamentCreated = response;
         console.log('Departament created:', this.resultDepartamentCreated);
-        this.toastService.success('Departamento creado');
+        this.messageService.add({severity:'success', summary:'Departamento creado', detail:'Departamento creado con éxito'});
 
         this.departamentService.setDepartamentCreated(this.resultDepartamentCreated);
 
@@ -65,7 +65,7 @@ export class DepartamentComponent {
       },
       (error) => {
         console.error('Error creating Departament:', error);
-        this.toastService.error('Error al crear departamento');
+        this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear el departamento'});
       }
     );
 

@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 <nav >
-   <div class="contenedor-navbar">
-      <h2 class="title_navbar">Holaaada</h2>
+   <div class="dark:bg-slate-600 contenedor-navbar">
+      <h2 class="title_navbar">Bienvenido</h2>
 
       
 
@@ -10,39 +9,18 @@
             <label for="simple-search" class="sr-only">Search</label>
             <div class="container_input_search">
                 
-                <input type="text" id="simple-search" class="input_search" placeholder="Buscar libro" required formControlName="search"  />
+                <input type="text" id="simple-search" class="input_search" placeholder="Buscar Empleado" required formControlName="search"  />
             </div>
             <button  type="submit"  class="button_search">
                 <svg class="logo_input" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-=======
-<nav>
-   <div class="flex  sm:ml-1 bg-white shadow-lg shadow-blue-400 p-3 rounded-lg h-16 flex-row justify-between items-center dark:bg-slate-800  z-10 ">
-      <h2 class="text-blue-600 sm:text-3xl sm:block font-semibold dark:text-green-400 hidden">Bienvenido</h2>
-
-      <div>
-         <form [formGroup]="formSearch" (ngSubmit)="onSubmit()" class="flex items-center max-w-sm mx-auto">   
-            <label for="simple-search" class="sr-only">Search</label>
-            <div class="relative w-full">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <img src="icons/search.png" class="w-4 h-4 text-gray-500 dark:text-gray-400" >
-                    
-                </div>
-                <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar empleado" required formControlName="search"  />
-            </div>
-            <button  type="submit"  class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                 </svg>
                 <span class="sr-only">Buscar</span>
             </button>
         </form>
-<<<<<<< HEAD
 
         <p-menu #menu [model]="opciones" [popup]="true" />
     <p-button (click)="menu.toggle($event)" icon="pi pi-ellipsis-v"/>
-=======
->>>>>>> ec85abeaeaf8d3e0835d8d391920f6d6f7d5599b
       </div>
    </div>
 </nav>

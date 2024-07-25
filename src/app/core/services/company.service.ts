@@ -3,12 +3,13 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '@envs/environment';
 import { ICompany } from '../models/types';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { IResponse } from '../models/response.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
-  apiUrl = environment.API_URL + 'Empresa';
+  apiUrl = environment.API_URL + 'Empresa/';
   http = inject(HttpClient);
 
   private companyCreated = new BehaviorSubject<ICompany | null>( null );
@@ -18,7 +19,7 @@ export class CompanyService {
     return this.http.get(this.apiUrl);
   }
 
-  getCompany(id: number) {
+  getCompany(id: number): Observable<IResponse | any> {
     return this.http.get(this.apiUrl + id);
   }
 

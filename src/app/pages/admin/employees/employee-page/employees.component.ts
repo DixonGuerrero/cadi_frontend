@@ -1,12 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { IDepartment, IEmployee } from '../../../../core/models/types';
-import { EmployeeCardComponent } from '../../../../shared/components/employee-card/employee-card.component';
 import { DepartamentService } from '../../../../core/services/departament.service';
 import { TokenService } from '../../../../core/services/token.service';
 import { EmployeeService } from '../../../../core/services/employee.service';
 
-import { ModalService } from '../../../../core/services/modal.service';
 import { EmployeeAddComponent } from '../employee-add/employee-add.component';
+import { EmployeeCardComponent } from '../employee-card/employee-card.component';
 
 @Component({
   selector: 'app-employees',
@@ -20,11 +19,7 @@ export class EmployeesComponent implements OnInit{
     // Services
     private employeeS = inject(EmployeeService);
     private tokenS = inject(TokenService);
-    private departamentS = inject(DepartamentService);
-   
-    constructor(public modalService: ModalService) {}
-
-    
+    private departamentS = inject(DepartamentService); 
   
     // Variables
     public employees: IEmployee[] = [];

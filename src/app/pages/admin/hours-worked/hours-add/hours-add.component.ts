@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, Input, inject } from '@angular/core';
-import { ModalService } from '../../../../core/services/modal.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IHours } from '../../../../core/models/types';
-import { ToastrService } from 'ngx-toastr';
 import { HoursWorkedService } from '../../../../core/services/hours-worked.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-hours-add',
@@ -14,15 +13,11 @@ import { HoursWorkedService } from '../../../../core/services/hours-worked.servi
 })
 export class HoursAddComponent implements AfterViewInit {
   @Input() id_employee: number = 0;
-  toastrSvc = inject(ToastrService);
+  messageService = inject(MessageService)
   hoursWorkedSvc = inject(HoursWorkedService);
-
-  constructor(public modalService: ModalService) {}
-
 
   ngAfterViewInit() {
 
-    this.modalService.initModal('vacations-modal' + this.id_employee);
   }
 
   formHoursWorked = new FormGroup({
@@ -49,16 +44,15 @@ export class HoursAddComponent implements AfterViewInit {
 
     this.hoursWorkedSvc.createHourWorked(hoursWorked).subscribe(
       (response) => {
-        this.toastrSvc.success('Horas trabajadas creadas');
+        this.messageService.add({severity:'success', summary:'Horas trabajadas creadas', detail:'Horas trabajadas creadas correctamente'})
         console.log('HoursWorked created:', response);
       },
       (error) => {
-        this.toastrSvc.error('Error al crear horas trabajadas');
+        this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear horas trabajadas'})
         console.error('Error creating HoursWorked:', error);
       }
     );
 
-    this.modalService.hideModal();
   }
 
   onDateClick(event: MouseEvent) {

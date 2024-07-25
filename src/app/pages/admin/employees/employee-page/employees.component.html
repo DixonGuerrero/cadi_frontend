@@ -15,20 +15,19 @@
       data-modal-toggle="modal-create-employee"
       class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
     >
-
       <span
         class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
       >
-      
         Agrergar Empleado
       </span>
 
-      <app-employee-add/>
+      <app-employee-add />
     </button>
   </div>
 
   <div>
-    @for(departament of departamentsWithEmployees; track departament.id_departamento) {
+    @if(employees.length != 0) { @for(departament of departamentsWithEmployees;
+    track departament.id_departamento) {
 
     <h2 class="text-slate-400 p-3 text-lg sm:text-2xl font-semibold py-5">
       Departamento de
@@ -40,6 +39,17 @@
       @if(employee.departamento_Id === departament.id_departamento){
       <app-employee-card [employee]="employee" />
       } }
+    </div>
+    } }@else {
+    <div class="flex flex-col items-center justify-center">
+      <img
+        src="assets/images/empty.svg"
+        alt="No hay empleados"
+        class="w-1/2"
+      />
+      <h2 class="text-slate-400 text-lg sm:text-2xl font-semibold py-5">
+        No hay empleados
+      </h2>
     </div>
     }
   </div>

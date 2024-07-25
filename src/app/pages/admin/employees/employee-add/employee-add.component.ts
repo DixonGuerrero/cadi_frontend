@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ModalService } from '../../../../core/services/modal.service';
 import { IDepartment, IEmployee } from '../../../../core/models/types';
-import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from '../../../../core/services/employee.service';
 import { TokenService } from '../../../../core/services/token.service';
 import { DepartamentService } from '../../../../core/services/departament.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-employee-add',
@@ -18,15 +17,13 @@ export class EmployeeAddComponent implements OnInit {
   departaments: IDepartment[] = [];
 
   constructor(
-    public modalService: ModalService,
-    private toast: ToastrService,
+    private messageService : MessageService,
     private employeeS: EmployeeService,
     private tokenS: TokenService,
     private departamentService: DepartamentService
   ) {}
 
   ngOnInit(): void {
-    this.modalService.initModal('modal-create-employee');
     this.initData();
   }
 
@@ -61,19 +58,17 @@ export class EmployeeAddComponent implements OnInit {
       console.log('Employee created', response);
 
       if (response === null || response === undefined) {
-        this.toast.error('Error al crear empleado');
+        this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear empleado'});
         return;
       }
 
       if (!response.id_Empleado) {
-        this.toast.error('Error al crear empleado');
+        this.messageService.add({severity:'error', summary:'Error', detail:'Error al crear empleado'});
         return;
       }
-
-      this.toast.success('Empleado creado correctamente');
+      this.messageService.add({severity:'success', summary:'Success', detail:'Empleado creado con exito'});
       this.employeeS.updateEmployeesCache();
 
-      this.modalService.hideModal();
     });
   }
 

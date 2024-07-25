@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IDepartment, IEmployee } from '../../../../core/models/types';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ModalService } from '../../../../core/services/modal.service';
-import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from '../../../../core/services/employee.service';
 import { TokenService } from '../../../../core/services/token.service';
 import { DepartamentService } from '../../../../core/services/departament.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-employee-edit',
@@ -33,15 +32,13 @@ export class EmployeeEditComponent {
     departamento_Id: new FormControl(0),
   });
   constructor(
-    public modalService: ModalService,
-    private toast: ToastrService,
     private employeeS: EmployeeService,
     private tokenS: TokenService,
-    private departamentService: DepartamentService
+    private departamentService: DepartamentService,
+    private messageService : MessageService
   ) {}
 
   ngOnInit(): void {
-    this.modalService.initModal('modal-edit-employee');
     this.initData();
     this.initFormValues();
   }
@@ -77,13 +74,12 @@ export class EmployeeEditComponent {
 
     this.employeeS.updateEmployee(editEmployee).subscribe(
       (response) => {
-        this.toast.success('Empleado editado');
+        this.messageService.add({severity:'success', summary:'Success', detail:'Empleado editado con éxito'});  
         this.employeeEdited.emit(editEmployee);
         this.employeeS.updateEmployeesCache();
-        this.modalService.hideModal();
       },
       (error) => {
-        this.toast.error('Error al editar empleado');
+        this.messageService.add({severity:'error', summary:'Error', detail:'Error al editar empleado'});
         console.error('Error editing Employee:', error);
       }
     );

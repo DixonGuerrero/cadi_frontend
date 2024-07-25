@@ -5,4 +5,5 @@ export interface ICompany {
    direccion:     string;
    telefono:      string;
    email:         string;
+   imagen?:       string;
 }   
