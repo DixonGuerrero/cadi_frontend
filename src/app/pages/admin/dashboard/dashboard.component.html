@@ -1,1 +1,39 @@
-Este es el dashboard
+<div class="w-full min-h-96 rounded-lg">
+   <div class="w-full flex sm:flex-row flex-col ">
+      <div class="m-2 rounded-lg shadow-blue-300 shadow-lg p-2 sm:p-4 w-full sm:min-w-max">
+         <h2 class="text-blue-600 sm:text-3xl">Empleados</h2>
+         <p class="text-slate-500 dark:text-slate-300 sm:text-5xl m-0">{{ quantityEmployees }}</p>
+         <span class="text-slate-400 dark:text-slate-400 ">Total de empleados</span>
+         <div class="flex w-full mt-4 justify-end">
+            <p-button label="Ver empleados" routerLink="/admin/employees" icon="pi pi-arrow-right" iconPos="right" class="mr-2 " styleClass="bg-blue-500 border-none rounded-xl py-2 px-3 text-sm  sm:py-2 sm:px-5 text-white font-semibold sm:text-lg" />
+         </div>
+      </div>
+      <div class="m-2 rounded-lg shadow-green-300 shadow-lg p-2 sm:p-4 w-full sm:min-w-max">
+         <h2 class="text-green-400 sm:text-3xl">Horas Trabajadas</h2>
+         <p class="text-slate-500 dark:text-slate-300 sm:text-5xl m-0">{{ countHoursWorked }}</p>
+         <span class="text-slate-400 dark:text-slate-400 ">Total de horas trabajadas esta semana</span>
+         <div class="flex w-full mt-4 justify-end">
+            <p-button label="Ver Horas" icon="pi pi-arrow-right" iconPos="right" class="mr-2 " styleClass="bg-green-400 border-none rounded-xl py-2 px-3 text-sm  sm:py-2 sm:px-5 text-white font-semibold sm:text-lg" />
+         </div>
+      </div>
+      <div class="m-2 rounded-lg shadow-blue-300 shadow-lg p-2 sm:p-4 w-full sm:min-w-max">
+         <h2 class="text-blue-500 sm:text-3xl">Vacaciones</h2>
+         <p class="text-slate-500 dark:text-slate-300 sm:text-5xl m-0">{{ quantifyEmployeesVacation }}</p>
+         <span class="text-slate-400 dark:text-slate-400 ">Total de empleados en vacaciones</span>
+         <div class="flex w-full mt-4 justify-end">
+            <p-button label="Ver Vacaciones" icon="pi pi-arrow-right" iconPos="right" class="mr-2 " styleClass="bg-blue-500 border-none rounded-xl py-2 px-3 text-sm  sm:py-2 sm:px-5 text-white font-semibold sm:text-lg" />
+         </div>
+      </div>
+   </div>
+   @if(employees.length != 0) {
+   <div class="">
+      <h3 class="text-lg sm:text-3xl text-slate-400 dark:text-slate-300 p-2 font-semibold">Empleados destacados </h3>
+   </div>
+
+   <div class="flex flex-row sm:flex-row w-full flex-wrap p-2 gap-2 justify-center ">
+      @for(employee of employees; track employee.id_Empleado) {
+      <app-employee-card [employee]="employee" class=""/>
+      }
+   </div>
+}
+</div>

@@ -4,8 +4,8 @@ import { ICompany, IDepartment } from '../../../core/models/types';
 import { Subscription } from 'rxjs';
 import { CompanyService } from '../../../core/services/company.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { DepartamentService } from '../../../core/services/departament.service';
 import { MessageService } from 'primeng/api';
+import { DepartamentService } from '../../../core/services/admin/departament.service';
 
 @Component({
   selector: 'app-departament',
@@ -57,7 +57,7 @@ export class DepartamentComponent {
         console.log('Departament created:', this.resultDepartamentCreated);
         this.messageService.add({severity:'success', summary:'Departamento creado', detail:'Departamento creado con éxito'});
 
-        this.departamentService.setDepartamentCreated(this.resultDepartamentCreated);
+        
 
         setTimeout(() => {
           this.router.navigate(['/auth/credentials']);

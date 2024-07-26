@@ -1,12 +1,5 @@
-.container {
-  padding: 1rem;
-}
 
-@media (min-width: 768px) {
-  .container {
-    padding: 1.25rem;
-  }
-}
+
 
 .container > * + * {
   margin-top: 1rem;
@@ -26,11 +19,7 @@
   align-items: center;
 }
 
-.container .header .data img {
-  width: 112px;
-  padding: 4px;
-  border-radius: 50%;
-}
+
 
 .container .header .data .name {
   font-size: 1.25rem;
@@ -39,11 +28,6 @@
   margin: 0px;
 }
 
-.container .header .data .name_placeholder {
-  font-size: 1.125rem;
-  color: #94a3b8;
-  margin: 0px;
-}
 
 .container .header .active {
   display: inline-block;
@@ -203,11 +187,6 @@
   }
 }
 
-p-speedDial {
-  position: fixed;
-  bottom: 5rem;
-  right: 5rem;
-}
 
 
  

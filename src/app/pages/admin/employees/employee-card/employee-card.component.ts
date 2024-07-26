@@ -65,9 +65,9 @@ export class EmployeeCardComponent {
   show() {
     this.ref = this.dialogService.open(EmployeeDetailsComponent, {
       header: 'Detalles Empleados',
-      width: '50vw',
-      height: '70vh',
-      contentStyle: { overflow: 'auto',},
+      width: 'auto',
+      height: 'auto',
+      contentStyle: { overflow: 'auto', 'padding':'0'},
       breakpoints: {
         '960px': '75vw',
         '640px': '90vw',

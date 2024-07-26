@@ -3,11 +3,12 @@ import { EmployeeCardComponent } from '../employees/employee-card/employee-card.
 import { RouterLink } from '@angular/router';
 import { EmployeeService } from '../../../core/services/employee.service';
 import { IEmployee } from '../../../core/models/employee.interface';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [EmployeeCardComponent, RouterLink],
+  imports: [EmployeeCardComponent, RouterLink,ButtonModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })

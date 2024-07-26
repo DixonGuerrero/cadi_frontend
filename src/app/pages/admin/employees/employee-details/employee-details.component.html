@@ -1,136 +1,141 @@
-<div class="dark:bg-slate-700 container">
-  <div class="header">
-    <div class="data">
-      <img [src]="employee.imagen" alt="" />
-      <div>
-        <p class="name">{{ employee.nombre }} {{ employee.apellido }}</p>
-        <p class="name_placeholder">Nombre del empleado</p>
+<div class="dark:bg-slate-700 container p-2 sm:p-6">
+  <div class="flex gap-1 sm:gap-4 w-full ">
+    <img
+      [src]="employee.imagen"
+      alt="Imagen de perfil del empleado"
+      class="sm:w-40 sm:h-40 sm:rounded-xl object-cover w-10 rounded-lg h-10"
+    />
+    <div class="flex flex-col justify-center w-full">
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex items-center sm:gap-2">
+          <div>
+            <p class="text-sm text-green-400 font-bold sm:text-xl m-0">
+              {{ employee.nombre }} {{ employee.apellido }}
+            </p>
+            <p class="m-0 text-[10px] sm:text-sm font-medium">
+              Nombre del empleado
+            </p>
+          </div>
+        </div>
+
+        @if(employee.estado){
+        <p
+          class="py-1 px-2 bg-green-400 text-white rounded-full text-[10px] sm:text-sm"
+        >
+          Activo
+        </p>
+        }@else {
+        <p
+          class="py-1 px-2 bg-red-400 text-white rounded-full text-[10px] sm:text-sm"
+        >
+          Inactivo
+        </p>
+        }
+      </div>
+      <div class="contact sm:mt-2">
+        <div
+          class=" px-2  rounded-3xl text-white bg-blue-300 dark:bg-blue-500 font-semibold text-[10px] sm:text-[10px] flex items-center gap-1"
+        >
+          <img
+            src="icons/ubication.png"
+            alt=""
+            class="w-8 h-8 object-cover sm:w-6 sm:h-6"
+          />
+          <p>{{ employee.direccion }}</p>
+        </div>
+        <div
+          class=" px-2  rounded-3xl text-white bg-blue-300 dark:bg-blue-500 font-semibold text-[10px] sm:text-[10px] flex items-center gap-1"
+        >
+          <img
+            src="icons/email.png"
+            alt=""
+            class="w-8 h-8 object-cover sm:w-6 sm:h-6"
+          />
+          <p>{{ employee.email }}</p>
+        </div>
+        <div
+          class=" px-2  rounded-3xl text-white bg-blue-300 dark:bg-blue-500 font-semibold text-[10px] sm:text-[10px] flex items-center gap-1"
+        >
+          <img
+            src="icons/phone.png"
+            alt=""
+            class="w-8 h-8 object-cover sm:w-6 sm:h-6"
+          />
+          <p>{{ employee.telefono }}</p>
+        </div>
       </div>
     </div>
-    @if(employee.estado){
-    <p
-      class="active"
-    >
-      Activo
-    </p>
-    }@else {
-    <p
-      class="inactive"
-    >
-      Inactivo
-    </p>
-    }
   </div>
 
-  <p class="title_sesion">Contacto</p>
-
-  <div class="contact">
-    <div
-      class="ubication"
-    >
-      <img src="icons/ubication.png"  alt="" />
-      <p>{{ employee.direccion }}</p>
-    </div>
-    <div
-      class="email"
-    >
-      <img src="icons/email.png"  alt="" />
-      <p>{{ employee.email }}</p>
-    </div>
-    <div
-      class="phone"
-    >
-      <img src="icons/phone.png" alt="" />
-      <p>{{ employee.telefono }}</p>
-    </div>
-  </div>
 
   <p class="title_sesion">Informacion</p>
 
-  <div class="info">
-    <div
-      class="info_item"
-    >
-      <img
-        src="icons/calendar.png"
-        alt=""
-      />
-      <div>
-        <p class="title_item">{{ hoursWorked }} hrs</p>
-        <p class="placeholder">Horas Trabajadas Semana</p>
-      </div>
+  <div class="flex w-full gap-1 justify-center">
+    <div class="flex flex-col items-center justify-center gap-0 p-2 bg-blue-400 rounded-lg">
+      <img src="icons/calendar.png" alt="Icono de las horas trabajadas" class="w-5 sm:w-8 m-0" />
+        <p class="font-bold text-sm m-0 sm:text-lg text-slate-300">{{ hoursWorked }} hrs</p>
+        <p class="text-[10px] sm:text-sm text-slate-300 m-0 font-semibold">Horas Trabajadas Semana</p>
+      
     </div>
-    <div
-      class="info_item"
-    >
-      <img
-        src="icons/watch.png"
-        alt=""
-      />
-      <div>
-        <p class="title_item">{{ timeServide }} years</p>
-        <p class="placeholder">Tiempo Servicio</p>
-      </div>
+   
+    <div class="flex flex-col items-center justify-center gap-0 p-2 bg-blue-400 rounded-lg">
+      <img src="icons/watch.png" alt="Icono de las horas trabajadas" class="w-5 sm:w-8 m-0" />
+        <p class="font-bold text-sm m-0 sm:text-lg text-slate-300">{{ timeServide }} years</p>
+        <p class="text-[10px] sm:text-sm text-slate-300 m-0 font-semibold">Tiempo Servicio</p>
+      
     </div>
-    <div
-      class="info_item"
-    >
-      <img
-        src="icons/test_performance.png"
-        alt=""
-      />
-      <div>
-        <p class="title_item">6.4</p>
-        <p class="placeholder">Evaluacion de desempeño</p>
-      </div>
+    <div class="flex flex-col items-center justify-center gap-0 p-2 bg-blue-400 rounded-lg">
+      <img src="icons/test_performance.png" alt="Icono de las horas trabajadas" class="w-5 sm:w-8 m-0" />
+        <p class="font-bold text-sm m-0 sm:text-lg text-slate-300">9.4</p>
+        <p class="text-[10px] sm:text-sm text-slate-300 m-0 font-semibold">Evaluacion de desempeño</p>
+      
     </div>
-    <div
-      class="info_item"
-    >
-      <img
-        src="icons/briefcase.png"
-        alt=""
-      />
-      <div>
-        <p class="title_item">{{ departament.nombreDepartamento }}</p>
-        <p class="placeholder">Departamento</p>
-      </div>
+    <div class="flex flex-col items-center justify-center gap-0 p-2 bg-blue-400 rounded-lg">
+      <img src="icons/briefcase.png" alt="Icono de las horas trabajadas" class="w-5 sm:w-8 m-0" />
+        <p class="font-bold text-sm m-0 sm:text-lg text-slate-300">{{ departament.nombreDepartamento }}</p>
+        <p class="text-[10px] sm:text-sm text-slate-300 m-0 font-semibold">Departamento</p>
+      
     </div>
+    
+   
+    
   </div>
 
   <p class="title_sesion">Estado</p>
 
   <div class="sesion_state">
-
-   <div class="states_items">
+    <div class="states_items">
       <!-- Vacaciones -->
-    <p
-      class="state"
-      [ngClass]="{
-        'active': employee.vacaciones,
-        'inactive': !employee.vacaciones
-      }"
-    >
-      Vacaciones
-    </p>
+      <p
+        class="state"
+        [ngClass]="{
+          active: employee.vacaciones,
+          inactive: !employee.vacaciones
+        }"
+      >
+        Vacaciones
+      </p>
 
-    <!-- Licencia -->
-    <p
-      class="state"
-      [ngClass]="{
-        'active': employee.licencia,
-        'inactive': !employee.licencia
-      }"
-    >
-      Licencia
-    </p>
-   </div>
-   <p-speedDial 
-            [model]="items?items:[]" 
-            radius="120" 
-            direction="up-left" 
-            type="quarter-circle" 
-            buttonClassName="p-button-success" />
-    
+      <!-- Licencia -->
+      <p
+        class="state"
+        [ngClass]="{
+          active: employee.licencia,
+          inactive: !employee.licencia
+        }"
+      >
+        Licencia
+      </p>
+    </div>
+    <p-speedDial
+      [model]="items ? items : []"
+      direction="up"
+    type="linear"
+      buttonClassName="bg-blue-300 w-10 h-10 "
+      [style]="{ position: 'absolute', bottom: '15px', right: '15px' }"
+      showIcon="pi pi-bars" 
+      hideIcon="pi pi-times" 
+      transitionDelay="80"
+    />
   </div>
 </div>

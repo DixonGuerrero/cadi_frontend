@@ -3,13 +3,13 @@ import { IDepartment, IEmployee } from '../../../core/models/types';
 import { NavBarComponent } from '../../../shared/components/nav-bar/nav-bar.component';
 import { Subscription } from 'rxjs';
 import { EmployeeService } from '../../../core/services/employee.service';
-import { DepartamentService } from '../../../core/services/departament.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeCardComponent } from '../employees/employee-card/employee-card.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ButtonModule } from 'primeng/button';
 import { SearchService } from '../../../core/services/admin/search.service';
 import { MessageService } from 'primeng/api';
+import { DepartamentService } from '../../../core/services/admin/departament.service';
 
 @Component({
   selector: 'app-search',

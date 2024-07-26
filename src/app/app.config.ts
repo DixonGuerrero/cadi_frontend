@@ -5,7 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 
 //Providers the PrimeNG
-import { MessageService, PrimeIcons } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -19,7 +19,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     MessageService,
     PrimeIcons,
-    DialogService 
+    DialogService,
+    ConfirmationService 
   ],
 
 };

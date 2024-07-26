@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { ThemeService } from './core/services/admin/theme.service';
 import { CommonModule } from '@angular/common';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { CommonModule } from '@angular/common';
     ToastModule,
     ButtonModule,
     MessageModule,
+    ConfirmDialogModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

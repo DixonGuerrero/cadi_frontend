@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CompanyService } from '../../../core/services/company.service';
-import { DepartamentService } from '../../../core/services/departament.service';
 import { EmployeeService } from '../../../core/services/employee.service';
 import {
   ICompany,
@@ -14,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 import { format } from 'date-fns';
 import { MessageService } from 'primeng/api';
+import { DepartamentService } from '../../../core/services/admin/departament.service';
 
 @Component({
   selector: 'app-credentials',

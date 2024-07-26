@@ -1,123 +1,133 @@
-<div
-  class="menu"
-  (click)="sizeSidebar()"
->
-@if(!bigMenu()){
-  <img src="icons/menu.png" class="w-5" alt="">
-}@else {
-  <img src="icons/close_menu.png" class="w-5" alt="">
-}
+<div class="menu" (click)="sizeSidebar()">
+  @if(!bigMenu()){
+  <img src="icons/menu.png" class="w-5" alt="" />
+  }@else {
+  <img src="icons/close_menu.png" class="w-5" alt="" />
+  }
 </div>
 
-<div
-  class="bg-slate-200 dark:bg-slate-600 barra-lateral "
->
-  <div >
-    <div class="text-xl flex items-center dark:text-blue-200" >
-      <img class="logo_user" [src]="empresa?.imagen" alt="" (click)="toggleLogo()">
-      <span>{{empresa?.nombreEmpresa}}</span>
-      
-  </div>
- 
+<div class="bg-slate-100 dark:bg-slate-600 barra-lateral">
+  <div>
+    <div class="text-xl flex items-center dark:text-blue-200">
+      <img
+        class="logo_user"
+        [src]="empresa?.imagen"
+        alt=""
+        (click)="toggleLogo()"
+      />
+      <span>{{ empresa?.nombreEmpresa }}</span>
+    </div>
   </div>
 
   <div class="linea"></div>
 
-  <nav class="navegacion ">
+  <nav class="navegacion">
     <p class="">Páginas</p>
     <ul>
-      <li class="">
+      <li class="dark:text-blue-100 text-slate-500">
         <a
           routerLink="/admin/dashboard"
-          routerLinkActive="active"
-          class="option "
+          routerLinkActive="bg-blue-100 shadow-md   dark:bg-slate-800  "
+          class="option hover:shadow-blue-200 hover:shadow-md"
         >
           <img src="icons/home.png" class="icon_option" />
           <span class="pl-2">Principal</span>
         </a>
       </li>
-      <li class="">
+      <li class="dark:text-blue-100 text-slate-500">
         <a
           routerLink="/admin/employees"
-          routerLinkActive="active"
-          class="option "
+          routerLinkActive="bg-blue-100 shadow-md   dark:bg-slate-800  "
+          class="option hover:shadow-blue-200 hover:shadow-md"
         >
           <img src="icons/employees.png" class="icon_option" />
           <span class="pl-2">Empleados</span>
         </a>
       </li>
-      <li class="dark:text-blue-100">
+      <li class="dark:text-blue-100 text-slate-500">
         <a
           routerLink="/admin/loans"
-          routerLinkActive="active"
-          class="option "
+          routerLinkActive="bg-blue-100 shadow-md   dark:bg-slate-800  "
+          class="option hover:shadow-blue-200 hover:shadow-md"
         >
-          <img src="icons/devolved.png" class="icon_option" />
-          <span class="pl-2 ">Licencias</span>
+          <img src="icons/license.png" class="icon_option" />
+          <span class="pl-2">Licencias</span>
         </a>
       </li>
-     
-      
+      <li class="dark:text-blue-100 text-slate-500">
+        <a
+          routerLink="/admin/departament-page"
+          routerLinkActive="bg-blue-100 shadow-md   dark:bg-slate-800  "
+          class="option hover:shadow-blue-200 hover:shadow-md"
+        >
+          <img src="icons/departamen.png" class="icon_option" />
+          <span class="pl-2">Departamentos</span>
+        </a>
+      </li>
+      <li class="dark:text-blue-100 text-slate-500">
+        <a
+          routerLink="/admin/loans"
+          routerLinkActive="bg-blue-100 shadow-md   dark:bg-slate-800  "
+          class="option hover:shadow-blue-200 hover:shadow-md"
+        >
+          <img src="icons/test.png" class="icon_option" />
+          <span class="pl-2">Desempeño</span>
+        </a>
+      </li>
+      <li class="dark:text-blue-100 text-slate-500">
+        <a
+          routerLink="/admin/loans"
+          routerLinkActive="bg-blue-100 shadow-md   dark:bg-slate-800  "
+          class="option hover:shadow-blue-200 hover:shadow-md"
+        >
+          <img src="icons/hours.png" class="icon_option" />
+          <span class="pl-2">Horas Trabajo</span>
+        </a>
+      </li>
+      <li class="dark:text-blue-100 text-slate-500">
+        <a
+          routerLink="/admin/loans"
+          routerLinkActive="bg-blue-100 shadow-md   dark:bg-slate-800  "
+          class="option hover:shadow-blue-200 hover:shadow-md"
+        >
+          <img src="icons/vacations.png" class="icon_option" />
+          <span class="pl-2">Vacaciones</span>
+        </a>
+      </li>
     </ul>
   </nav>
 
   <div>
     <div class="linea"></div>
 
-    <div
-      class="modo-oscuro"
-    >
+    <div class="modo-oscuro">
       @if(themeService.darkModeSignal() != 'dark'){
-      <div
-        class="info "
-      >
-        <img
-          src="icons/dark_mode.png"
-          class="icon"
-          alt=""
-        />
-        <span id="texto-Tema" >Modo oscuro</span>
+      <div class="info">
+        <img src="icons/dark_mode.png" class="icon" alt="" />
+        <span id="texto-Tema">Modo oscuro</span>
       </div>
       }@else {
-      <div
-        class="info "
-      >
+      <div class="info">
         <img src="icons/sun.png" class="icon" alt="" />
         <span id="texto-Tema" class="dark:text-blue-100">Modo claro</span>
       </div>
       }
 
-      <div
-        class="switch "
-        (click)="toggleDarkMode()"
-      >
+      <div class="switch" (click)="toggleDarkMode()">
         @if(themeService.darkModeSignal() == 'dark'){
-        <img
-          src="icons/switch_active.png"
-          class="icon"
-          alt=""
-        />
+        <img src="icons/switch_active.png" class="icon" alt="" />
         }@else {
-        <img
-          src="icons/switch_disabled.png"
-          class="icon"
-          alt=""
-        />
+        <img src="icons/switch_disabled.png" class="icon" alt="" />
         }
       </div>
     </div>
   </div>
 </div>
 
+<main>
+  <app-nav-bar />
 
-
-<main >
-  <app-nav-bar/>
-
-  <div class="contenido w-full">
+  <div class="contenido w-full bg-slate-100 dark:bg-slate-600">
     <router-outlet />
   </div>
- 
 </main>
-
-

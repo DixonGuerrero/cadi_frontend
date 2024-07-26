@@ -8,11 +8,12 @@ import { EmployeeCardComponent } from '../employee-card/employee-card.component'
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-employees-page',
   standalone: true,
-  imports: [EmployeeCardComponent, ButtonModule, CarouselModule, TagModule],
+  imports: [EmployeeCardComponent, ButtonModule, CarouselModule, TagModule,TooltipModule],
   templateUrl: './employees-page.component.html',
   styleUrl: './employees-page.component.css'
 })

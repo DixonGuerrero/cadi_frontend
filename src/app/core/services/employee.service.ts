@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '@envs/environment';
 import { IDepartment, IEmployee, IResponse } from '../models/types';
 import { Observable, shareReplay,catchError, map, switchMap, of } from 'rxjs';
-import { DepartamentService } from './departament.service';
+import { DepartamentService } from './admin/departament.service';
 
 @Injectable({
   providedIn: 'root',
