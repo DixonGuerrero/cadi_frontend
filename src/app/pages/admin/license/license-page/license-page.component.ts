@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { EmployeeService } from '../../../../core/services/employee.service';
 import { LicenseService } from '../../../../core/services/license.service';
 import { IEmployee, ILicense } from '../../../../core/models/types';
 import { LicenseCardComponent } from '../license-card/license-card.component';
+import { EmployeeService } from '../../../../core/services/admin/employee.service';
 
 @Component({
   selector: 'app-license-page',

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TokenService } from '../../../../core/services/token.service';
-import { IDepartment } from '../../../../core/models/types';
+import { TokenService } from '../../../../core/services/auth/token.service';import { IDepartment } from '../../../../core/models/types';
 import { MessageService } from 'primeng/api';
 import { DepartamentService } from '../../../../core/services/admin/departament.service';
 import { InputTextareaModule } from 'primeng/inputtextarea';

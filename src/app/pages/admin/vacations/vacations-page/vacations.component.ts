@@ -1,8 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { IEmployee } from '../../../../core/models/types';
-import { TokenService } from '../../../../core/services/token.service';
-import { EmployeeService } from '../../../../core/services/employee.service';
-import { EmployeeCardComponent } from '../../employees/employee-card/employee-card.component';
+import { TokenService } from '../../../../core/services/auth/token.service';import { EmployeeCardComponent } from '../../employees/employee-card/employee-card.component';
+import { EmployeeService } from '../../../../core/services/admin/employee.service';
 
 @Component({
   selector: 'app-vacations',

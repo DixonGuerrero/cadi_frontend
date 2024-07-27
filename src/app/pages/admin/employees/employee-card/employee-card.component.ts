@@ -21,7 +21,7 @@ export class EmployeeCardComponent {
 
   hoursWorked = 12;
   nameEmployee = '';
-  departament : IDepartment = {
+  departament: IDepartment = {
     nombreDepartamento: '',
     descripcion: '',
     empresa_Id: 0,
@@ -29,18 +29,6 @@ export class EmployeeCardComponent {
   timeServide = 0;
   photo = 'images/admin.jpg';
   details = signal<Boolean>(false);
-
-  ngOnInit(): void {
-    this.loadDataDepartament();
-    this.calculateTimeService();
-    this.formatFecha();
-  }
-
-  loadDataDepartament() {
-    this.departamentService.getDepartament(this.employee.departamento_Id).subscribe((data) => {
-      this.departament = data.resultado as IDepartment;
-    })
-  }
 
   @Input() employee: IEmployee = {
     id_Empleado: 0,
@@ -62,19 +50,31 @@ export class EmployeeCardComponent {
 
   ref: DynamicDialogRef | undefined;
 
+  ngOnInit(): void {
+    this.loadDataDepartament();
+    this.calculateTimeService();
+    
+  }
+
+  loadDataDepartament() {
+    this.departamentService.getDepartament(this.employee.departamento_Id).subscribe((data) => {
+      this.departament = data.resultado as IDepartment;
+    });
+  }
+
   show() {
     this.ref = this.dialogService.open(EmployeeDetailsComponent, {
       header: 'Detalles Empleados',
       width: 'auto',
       height: 'auto',
-      contentStyle: { overflow: 'auto', 'padding':'0'},
+      contentStyle: { overflow: 'auto', padding: '0' },
       breakpoints: {
         '960px': '75vw',
         '640px': '90vw',
       },
       data: {
         employee: this.employee,
-      }
+      },
     });
 
     this.ref.onClose.subscribe((data: any) => {});
@@ -102,8 +102,5 @@ export class EmployeeCardComponent {
     this.timeServide = timeService ?? 0;
   }
 
-  formatFecha() {
-    const date = new Date(this.employee.fecha_Nacimiento);
-    const formattedDate = date.toLocaleDateString();
-  }
+
 }

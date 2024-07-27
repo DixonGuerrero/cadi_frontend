@@ -4,10 +4,9 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { loginGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-   {
+  {
       path: '' , redirectTo: 'auth', pathMatch: 'full'
-   },
-   
+   }, 
    {
       path: 'auth', loadChildren: () => import('./pages/auth/auth.routes').then(m => m.RoutesAuth),
    },

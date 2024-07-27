@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as jwt from 'jwt-decode';  
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +26,11 @@ export class TokenService {
   getEmpresaId(): number {
     const empresaIdString = this.cookieService.get('empresaId');
     return parseInt(empresaIdString, 10);
+  }
+  getEmpresaIdObserver(): Observable<number> {
+    const empresaIdString = this.cookieService.get('empresaId');
+    const empresaId = parseInt(empresaIdString, 10);
+    return of(empresaId);
   }
 
   storeTokenInCookies(token: string, empresaId: number): Observable<void> {

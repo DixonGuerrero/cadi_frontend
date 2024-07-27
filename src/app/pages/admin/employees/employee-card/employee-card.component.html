@@ -1,6 +1,6 @@
 <a
 (click)="show()"
-  class="dark:bg-blue-600 bg-white card_employee"
+  class="dark:bg-slate-700 bg-white card_employee shadow-lg"
 >
   <div class="content">
     <div class="header">
@@ -43,10 +43,7 @@
     <h2 class="text-sm font-bold text-green-400 sm:text-lg">
       {{ employee.nombre + " " + employee.apellido }}
     </h2>
-    <p class="text-[10px] text-center font-bold text-slate-500 dark:text-blue-200">
-      {{ employee.fecha_Nacimiento }} - {{ employee.direccion }} -
-      {{ employee.email }} - {{ employee.telefono }}
-    </p>
+   
   </div>
 
   <div class="footer">

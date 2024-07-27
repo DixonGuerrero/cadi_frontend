@@ -10,6 +10,8 @@ import { VacationsAddComponent } from '../../vacations/vacations-add/vacations-a
 import { HoursAddComponent } from '../../hours-worked/hours-add/hours-add.component';
 import { LicenseAddComponent } from '../../license/license-add/license-add.component';
 import { EmployeeEditComponent } from '../employee-edit/employee-edit.component';
+import { EmployeeService } from '../../../../core/services/admin/employee.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-employee-details',
@@ -22,6 +24,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
   departamentService = inject(DepartamentService);
   messageService = inject(MessageService);
+  employeeService = inject(EmployeeService);
 
   hoursWorked = 12;
   departament : IDepartment = {
@@ -51,6 +54,9 @@ export class EmployeeDetailsComponent implements OnInit{
     departamento_Id: 0,
   }
 
+  private subscriptions: Subscription = new Subscription();
+  
+  refUpdateDialog: DynamicDialogRef | undefined;
 
   instance: DynamicDialogComponent | undefined;
 
@@ -62,15 +68,15 @@ export class EmployeeDetailsComponent implements OnInit{
     this.employee = this.instance?.data[
       'employee'
     ];
+    this.setupSubscriptions();
     this.loadDataDepartament();
     this.calculateTimeService();
-    this.formatFecha();
 
     this.items = [
       {
           icon: 'pi pi-pencil',
           command: () => {
-              this.messageService.add({ severity: 'info', summary: 'Add', detail: 'Data Added' });
+              this.showEditEmploye();
           }
       },
       {
@@ -97,6 +103,23 @@ export class EmployeeDetailsComponent implements OnInit{
   ];
   }
 
+
+  setupSubscriptions(): void {
+    
+    
+    const updatedSubscription = this.employeeService.employeeUpdated$.subscribe((updatedEmployee) => {
+      console.log('Empleado actualizado:', updatedEmployee);
+      if(this.employee.id_Empleado === updatedEmployee.id_Empleado){
+        this.employee = updatedEmployee;
+        this.calculateTimeService();
+      }
+    });
+  
+    
+  
+    this.subscriptions.add(updatedSubscription);
+  }
+  
   loadDataDepartament() {
     this.departamentService.getDepartament(this.employee.departamento_Id).subscribe((data) => {
       this.departament = data.resultado as IDepartment;
@@ -110,13 +133,31 @@ export class EmployeeDetailsComponent implements OnInit{
     this.timeServide = timeService;
   }
 
-  formatFecha() {
-    const date = new Date(this.employee.fecha_Nacimiento);
-    this.employee.fecha_Nacimiento = date.toLocaleDateString();
-  }
-
   handleUpdateEmployee(employee: IEmployee) {
     this.employee = employee;
+  }
+
+  
+
+
+  showEditEmploye() {
+    this.refUpdateDialog = this.dialogService.open(EmployeeEditComponent, {
+      header: ' Editar empleado',
+      width: 'auto',
+      height: 'auto',
+      contentStyle: { overflow: 'auto', 'padding':'0'},
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '90vw',
+      },
+      data: {
+        employee: this.employee,
+      }
+    });
+
+    
+
+    
   }
   
 }

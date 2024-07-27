@@ -1,19 +1,21 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CompanyService } from '../../../core/services/company.service';
-import { EmployeeService } from '../../../core/services/employee.service';
 import {
   ICompany,
   IDepartment,
   IEmployee,
-  IUsuario,
-  Rol,
+ 
+ 
 } from '../../../core/models/types';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../../core/services/auth.service';
+
 import { format } from 'date-fns';
 import { MessageService } from 'primeng/api';
 import { DepartamentService } from '../../../core/services/admin/departament.service';
+import { EmployeeService } from '../../../core/services/admin/employee.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
+import { IUser, Rol } from '../../../core/models/user.interface';
 
 @Component({
   selector: 'app-credentials',
@@ -107,13 +109,13 @@ export class CredentialsComponent implements OnInit {
   }
 
   generateUser() {
-    const rol: Rol = 'SuperAdmin';
+    const rol: Rol = 'SUPERUSER';
 
-    const userSuperAdmin: IUsuario = {
+    const userSuperAdmin: IUser = {
       nombre_usuario: this.username,
       contrasena: this.password,
-      rol: rol,
-      empleado_Id: this.createdEmployee?.id_Empleado ?? 1,
+      rol:rol,
+      empresa_Id: this.companyCreated?.id_Empresa ?? 1,
     };
 
     console.log('Usuario:', userSuperAdmin);

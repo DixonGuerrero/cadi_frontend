@@ -103,3 +103,12 @@ src: {
         variables.scss
     }
 }
+
+
+
+Nota importante revisar esta porcion de codigo ![alt text](image.png) por si hay algo de emmiters en las dialog de prime ng
+
+
+Pendientes Modelo Empleados
+ -Revisar por que se cierra simultaneamente la ventana de editar con la de detalles
+ -Agregar el delete de empleados
